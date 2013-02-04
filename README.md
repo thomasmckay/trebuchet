@@ -12,7 +12,7 @@ For in-depth class and method documentation: http://katello.github.com/trebuchet
 
 Currently Trebuchet must be used via:
 
-  git clone git://github.com/ehelms/trebuchet.git
+  git clone git://github.com/Katello/trebuchet.git
 
 ## Test Runner
 
