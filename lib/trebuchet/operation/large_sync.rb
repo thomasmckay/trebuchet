@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat
+# Copyright (c) 2013 Red Hat
 #
 # MIT License
 #
@@ -21,9 +21,28 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Engine
+    class LargeSync < Trebuchet::Engine::KatelloCommand
 
-resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
 
-resources.uniq.each{ |f| require f }
+      ORG_NAME = "ORG_NAME"
+      ENV_NAME = "DEV"
+
+      def name
+        "Large Sync"
+      end
+
+      def katello_commands
+        [
+            { :id=> :org_create,
+              :command => "organization create --name = #{ORG_NAME}" },
+            { :id=>:env_create,
+              :command=>"environment create --org=ACME_Corporation --name=#{ORG_NAME} --prior=Library"},
+            { :id=> :org_destroy,
+              :command => "organization delete --name = #{ORG_NAME}" }
+        ]
+      end
+    end
+  end
+end

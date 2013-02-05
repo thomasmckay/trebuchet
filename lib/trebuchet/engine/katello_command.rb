@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat
+# Copyright (c) 2013 Red Hat
 #
 # MIT License
 #
@@ -22,8 +22,43 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
+module Trebuchet
+  module Engine
+    class KatelloCommand
 
-resources.uniq.each{ |f| require f }
+
+      COMMAND = 'katello'
+      OPTIONS = '-u admin -p admin --host=localhost'
+
+
+      def run
+        self.katello_commands.each do |command|
+          entry = Entry.new({:operation=>self.name, :name=>command[:id], :details=>command[:command]})
+          command = "#{COMMAND} #{OPTIONS} #{command[:command]}"
+          self.run_command(entry, command)
+
+        end
+      end
+
+
+      def katello_commands
+        raise "katello_commands not implemented"
+      end
+
+
+      def run_command(entry, command)
+        time_command(entry) do
+          `#{command}`
+        end
+      end
+
+      def time_command(entry, &block)
+          start_time = Time.now
+          yield
+          end_time = Time.now
+          entry.duration = (end_time - start_time).to_f
+          Trebuchet::Logger.log_entry(entry)
+      end
+    end
+  end
+end

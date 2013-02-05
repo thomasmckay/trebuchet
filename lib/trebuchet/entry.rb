@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat
+# Copyright (c) 2013 Red Hat
 #
 # MIT License
 #
@@ -22,8 +22,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
 
-resources.uniq.each{ |f| require f }
+class Trebuchet::Entry
+  attr_accessor :operation, :name, :duration, :details
+
+  def initialize(params={})
+    self.operation = params[:operation]
+    self.name = params[:name]
+    self.duration = params[:duration]
+    self.details = params[:details]
+  end
+end

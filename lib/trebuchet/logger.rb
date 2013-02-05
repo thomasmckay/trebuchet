@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat
+# Copyright (c) 2013 Red Hat
 #
 # MIT License
 #
@@ -22,8 +22,18 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
+class Trebuchet::Logger
 
-resources.uniq.each{ |f| require f }
+
+  RECORDS = {}
+
+  def self.log_entry(entry)
+    RECORDS[entry.operation] ||= []
+    RECORDS[entry.operation]<< entry
+  end
+
+  def self.dump_log
+    RECORDS
+  end
+
+end
