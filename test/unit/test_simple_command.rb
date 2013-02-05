@@ -35,7 +35,7 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
     entry = Trebuchet::Entry.new({:operation=>'FOO', :name=>'bar'})
     cmd.run_command(entry, 'ls /tmp')
 
-    assert Trebuchet::Logger.dump_log.size == 1
+    assert_equal Trebuchet::Logger.dump_log.size, 1
   end
 
 
