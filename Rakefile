@@ -2,7 +2,6 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
 
-require 'ruby-debug'
 
 namespace :test do
   "Runs the unit tests"
@@ -11,9 +10,6 @@ namespace :test do
   end
 
 end
-
-
-
 
 desc "Runs all tests"
 task :test do

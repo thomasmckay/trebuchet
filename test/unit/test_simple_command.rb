@@ -26,8 +26,6 @@ require 'rubygems'
 require 'minitest/autorun'
 require 'trebuchet'
 
-require 'ruby-debug'
-
 class TestSimpleCommand < MiniTest::Unit::TestCase
 
   def test_ls
