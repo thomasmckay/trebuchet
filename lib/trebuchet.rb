@@ -26,6 +26,4 @@ resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
 resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
 resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
 
-resources.uniq.each{ |f|
-  print f + "\n"
-  require f }
+resources.uniq.each{ |f|  require f }

@@ -40,7 +40,7 @@ module Trebuchet
 
     # List all operation names
     def list_operations
-      gather_operations.collect{|o| o.name}
+      gather_operations.collect{|o| o.new.name}
     end
 
     private
