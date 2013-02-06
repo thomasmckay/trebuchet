@@ -42,7 +42,7 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
     assert_equal logs.size, 1 #single operation
     assert_equal logs[op].size, 1 #single run in the operation
     entry =  logs[op][0]
-    assert_equal entry.name, 'bar'
+    assert_equal 'bar', entry.name
     assert entry.success
   end
 
@@ -52,7 +52,7 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
     entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
     cmd.run_command(entry, 'ls /bad_directory')
     logs =  Trebuchet::Logger.dump_log
-    assert !entry.success
+    refute entry.success
   end
 
 end
