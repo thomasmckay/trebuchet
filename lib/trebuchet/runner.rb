@@ -28,8 +28,8 @@ module Trebuchet
 
     # Run all operations, or a specific operation
     #
-    # @param  [String]                config    the ID of the role
-    # @param  [String]                operation_name the single operation to run, otherwise all
+    # @param  [String]  config          the ID of the role
+    # @param  [String]  operation_name  the single operation to run, otherwise all
     def run(config, operation_name=nil)
       gather_operations.each do |operation|
         if operation_name.nil? || operation_name == operation.name
@@ -38,9 +38,11 @@ module Trebuchet
       end
     end
 
-    # List all operation names
+    # List all operations
+    # 
+    # @return [Array] list of available operations to deploy
     def list_operations
-      gather_operations.collect{|o| o.new.name}
+      gather_operations.collect{|o| o.new}
     end
 
     private
