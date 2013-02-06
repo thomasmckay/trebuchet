@@ -28,17 +28,31 @@ require 'trebuchet'
 
 class TestSimpleCommand < MiniTest::Unit::TestCase
 
-  def test_ls
-    cmd = Trebuchet::Engine::KatelloCommand.new
-    entry = Trebuchet::Entry.new({:operation=>'FOO', :name=>'bar'})
-    cmd.run_command(entry, 'ls /tmp')
-
-    assert_equal Trebuchet::Logger.dump_log.size, 1
+  def setup
+    Trebuchet::Logger.clear_log
   end
 
+  def test_ls
+    op = 'Foo'
+    cmd = Trebuchet::Engine::KatelloCommand.new
+    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
+    cmd.run_command(entry, 'ls /tmp')
 
-  def test_foo
-    assert true
+    logs =  Trebuchet::Logger.dump_log
+    assert_equal logs.size, 1 #single operation
+    assert_equal logs[op].size, 1 #single run in the operation
+    entry =  logs[op][0]
+    assert_equal 'bar', entry.name
+    assert entry.success
+  end
+
+  def test_failure
+    op = 'Foo'
+    cmd = Trebuchet::Engine::KatelloCommand.new
+    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
+    cmd.run_command(entry, 'ls /bad_directory')
+    logs =  Trebuchet::Logger.dump_log
+    refute entry.success
   end
 
 end

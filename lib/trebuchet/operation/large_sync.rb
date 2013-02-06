@@ -25,7 +25,7 @@ module Trebuchet
   module Operation
     class LargeSync < Trebuchet::Engine::KatelloCommand
 
-      ORG_NAME = "ORG_NAME"
+      ORG_NAME = "SomeOrg"
       ENV_NAME = "DEV"
 
       def name
@@ -39,11 +39,11 @@ module Trebuchet
       def katello_commands
         [
             { :id=> :org_create,
-              :command => "organization create --name = #{ORG_NAME}" },
+              :command => "org create --name=#{ORG_NAME}" },
             { :id=>:env_create,
               :command=>"environment create --org=ACME_Corporation --name=#{ORG_NAME} --prior=Library"},
             { :id=> :org_destroy,
-              :command => "organization delete --name = #{ORG_NAME}" }
+              :command => "org delete --name=#{ORG_NAME}" }
         ]
       end
     end

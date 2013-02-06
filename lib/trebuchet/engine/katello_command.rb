@@ -26,29 +26,30 @@ module Trebuchet
   module Engine
     class KatelloCommand
 
-
       COMMAND = 'katello'
-      OPTIONS = '-u admin -p admin --host=localhost'
 
+      def initialize(config={})
+        @config = config
+      end
 
       def run
         self.katello_commands.each do |command|
-          entry = Entry.new({:operation=>self.name, :name=>command[:id], :details=>command[:command]})
-          command = "#{COMMAND} #{OPTIONS} #{command[:command]}"
-          self.run_command(entry, command)
-
+          binary = @config[:base_command] ||  COMMAND
+          entry = Trebuchet::Entry.new({:operation=>self.name, :name=>command[:id]})
+          full_command = "#{binary} -u #{@config[:user]} -p #{@config[:password]} " +
+              "--host #{@config[:host]} #{command[:command]}"
+          self.run_command(entry, full_command)
         end
       end
-
 
       def katello_commands
         raise "katello_commands not implemented"
       end
 
-
       def run_command(entry, command)
         time_command(entry) do
-          `#{command}`
+          entry.details = command
+          entry.success = system(command)
         end
       end
 

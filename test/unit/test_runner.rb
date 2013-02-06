@@ -22,21 +22,21 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-class Trebuchet::Logger
+require 'rubygems'
+require 'trebuchet'
+require 'minitest/autorun'
 
+class TestRunner < MiniTest::Unit::TestCase
 
-  RECORDS = {}
-
-  def self.log_entry(entry)
-    RECORDS[entry.operation] ||= []
-    RECORDS[entry.operation]<< entry
+  def setup
+    Trebuchet::Logger.clear_log
   end
 
-  def self.dump_log
-    RECORDS
+  def test_simple_config
+    runner = Trebuchet::Runner.new
+    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake'})
+    refute_empty Trebuchet::Logger.dump_log
   end
 
-  def self.clear_log
-    RECORDS.clear
-  end
+
 end

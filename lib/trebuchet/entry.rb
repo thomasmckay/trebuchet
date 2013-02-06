@@ -24,12 +24,13 @@
 
 
 class Trebuchet::Entry
-  attr_accessor :operation, :name, :duration, :details
+  attr_accessor :operation, :name, :duration, :details, :success
 
   def initialize(params={})
     self.operation = params[:operation]
     self.name = params[:name]
     self.duration = params[:duration]
     self.details = params[:details]
+    self.success = params[:success]
   end
 end

@@ -22,18 +22,21 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'active_support/core_ext/string/inflections' #required for .camelize
+require 'active_support/core_ext/hash' #with_indifferent_access
 
 module Trebuchet
   class Runner
 
     # Run all operations, or a specific operation
     #
-    # @param  [String]  config          the ID of the role
+    # @param  [Hash]    config          config hash to pass to operations (currently  :host, :user, :password)
     # @param  [String]  operation_name  the single operation to run, otherwise all
     def run(config, operation_name=nil)
+      config = config.with_indifferent_access
+
       gather_operations.each do |operation|
         if operation_name.nil? || operation_name == operation.name
-          operation.new.run
+          operation.new(config).run
         end
       end
     end
