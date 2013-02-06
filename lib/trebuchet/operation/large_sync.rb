@@ -22,7 +22,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 module Trebuchet
-  module Engine
+  module Operation
     class LargeSync < Trebuchet::Engine::KatelloCommand
 
 
@@ -30,7 +30,7 @@ module Trebuchet
       ENV_NAME = "DEV"
 
       def name
-        "Large Sync"
+        "LargeSync"
       end
 
       def katello_commands
