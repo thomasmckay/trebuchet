@@ -36,4 +36,7 @@ class Trebuchet::Logger
     RECORDS
   end
 
+  def self.clear_log
+    RECORDS.clear
+  end
 end

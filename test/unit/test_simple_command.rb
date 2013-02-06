@@ -30,17 +30,32 @@ require 'ruby-debug'
 
 class TestSimpleCommand < MiniTest::Unit::TestCase
 
+  def setup
+    Trebuchet::Logger.clear_log
+  end
+
   def test_ls
+    op = 'Foo'
     cmd = Trebuchet::Engine::KatelloCommand.new
-    entry = Trebuchet::Entry.new({:operation=>'FOO', :name=>'bar'})
+    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
     cmd.run_command(entry, 'ls /tmp')
 
-    assert_equal Trebuchet::Logger.dump_log.size, 1
+    logs =  Trebuchet::Logger.dump_log
+    assert_equal logs.size, 1 #single operation
+    assert_equal logs[op].size, 1 #single run in the operation
+    entry =  logs[op][0]
+    assert_equal entry.name, 'bar'
+    assert entry.success
   end
 
-
-  def test_foo
-    assert true
+  def test_failure
+    op = 'Foo'
+    cmd = Trebuchet::Engine::KatelloCommand.new
+    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
+    cmd.run_command(entry, 'ls /bad_directory')
+    logs =  Trebuchet::Logger.dump_log
+    assert !entry.success
   end
+
 
 end

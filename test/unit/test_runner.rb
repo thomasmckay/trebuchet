@@ -22,44 +22,21 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-module Trebuchet
-  module Engine
-    class KatelloCommand
+require 'rubygems'
+require 'minitest/autorun'
+require 'trebuchet'
 
-      COMMAND = 'katello'
+require 'ruby-debug'
 
-      def initialize(config={})
-        @config = config
-      end
-
-      def run
-        self.katello_commands.each do |command|
-          binary = @config[:base_command] ||  COMMAND
-          entry = Trebuchet::Entry.new({:operation=>self.name, :name=>command[:id]})
-          full_command = "#{binary} -u #{@config[:user]} -p #{@config[:password]} " +
-              "--host #{@config[:host]} #{command[:command]}"
-          self.run_command(entry, full_command)
-        end
-      end
-
-      def katello_commands
-        raise "katello_commands not implemented"
-      end
-
-      def run_command(entry, command)
-        time_command(entry) do
-          entry.details = command
-          entry.success = system(command)                
-        end
-      end
-
-      def time_command(entry, &block)
-          start_time = Time.now
-          yield
-          end_time = Time.now
-          entry.duration = (end_time - start_time).to_f
-          Trebuchet::Logger.log_entry(entry)
-      end
-    end
+class TestRunner < MiniTest::Unit::TestCase
+  def setup
+    Trebuchet::Logger.clear_log
   end
+
+  def test_simple_config
+    runner = Trebuchet::Runner.new
+    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake'})
+  end
+
+
 end
