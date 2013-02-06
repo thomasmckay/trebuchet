@@ -14,4 +14,5 @@ Gem::Specification.new do |gem|
   gem.name          = "trebuchet"
   gem.require_paths = ["lib"]
   gem.version       = Trebuchet::VERSION
+  gem.add_dependency('activesupport', '>= 3.0.10')
 end
