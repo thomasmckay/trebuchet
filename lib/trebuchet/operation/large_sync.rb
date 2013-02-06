@@ -25,12 +25,15 @@ module Trebuchet
   module Operation
     class LargeSync < Trebuchet::Engine::KatelloCommand
 
-
       ORG_NAME = "SomeOrg"
       ENV_NAME = "DEV"
 
       def name
         "LargeSync"
+      end
+
+      def description
+        "Peforms a content sync to Library using a large repository"
       end
 
       def katello_commands

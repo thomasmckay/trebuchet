@@ -26,8 +26,6 @@ require 'rubygems'
 require 'minitest/autorun'
 require 'trebuchet'
 
-require 'ruby-debug'
-
 class TestSimpleCommand < MiniTest::Unit::TestCase
 
   def setup
@@ -56,6 +54,5 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
     logs =  Trebuchet::Logger.dump_log
     assert !entry.success
   end
-
 
 end

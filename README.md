@@ -1,5 +1,9 @@
 # Trebuchet
 
+[![Build Status](https://secure.travis-ci.org/Katello/trebuchet.png)](http://travis-ci.org/Katello/trebuchet)
+
+For in-depth class and method documentation: http://katello.github.com/trebuchet/
+
 ## Goals
 
 * Provide repeatable test scripts for performance benchmarking over time

@@ -29,8 +29,8 @@ module Trebuchet
 
     # Run all operations, or a specific operation
     #
-    # @param  [Hash]          config hash to pass to operations (currently  :host, :user, :password)
-    # @param  [String]        operation_name the single operation to run, otherwise all
+    # @param  [Hash]    config          config hash to pass to operations (currently  :host, :user, :password)
+    # @param  [String]  operation_name  the single operation to run, otherwise all
     def run(config, operation_name=nil)
       config = config.with_indifferent_access
 
@@ -41,9 +41,11 @@ module Trebuchet
       end
     end
 
-    # List all operation names
+    # List all operations
+    # 
+    # @return [Array] list of available operations to deploy
     def list_operations
-      gather_operations.collect{|o| o.new.name}
+      gather_operations.collect{|o| o.new}
     end
 
     private

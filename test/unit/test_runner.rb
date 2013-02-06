@@ -23,12 +23,11 @@
 
 
 require 'rubygems'
-require 'minitest/autorun'
 require 'trebuchet'
-
-require 'ruby-debug'
+require 'minitest/autorun'
 
 class TestRunner < MiniTest::Unit::TestCase
+
   def setup
     Trebuchet::Logger.clear_log
   end

@@ -49,7 +49,7 @@ module Trebuchet
       def run_command(entry, command)
         time_command(entry) do
           entry.details = command
-          entry.success = system(command)                
+          entry.success = system(command)
         end
       end
 
