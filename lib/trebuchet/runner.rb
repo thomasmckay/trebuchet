@@ -38,7 +38,7 @@ module Trebuchet
       end
     end
 
-    # List all operation names
+    # List all operations
     # 
     # @return [Array] list of available operations to deploy
     def list_operations
