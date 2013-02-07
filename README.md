@@ -10,13 +10,11 @@ For in-depth class and method documentation: http://katello.github.com/trebuchet
 * Collect historical data of test runs and scenarios
 * Allow definable test scenarios separate from test runner
 
-For in-depth class and method documentation: http://katello.github.com/trebuchet/
-
 ## Installation
 
 Currently Trebuchet must be used via:
 
-  git clone git://github.com/Katello/trebuchet.git
+    git clone git://github.com/Katello/trebuchet.git
 
 ## Terminology
 
@@ -29,15 +27,15 @@ Currently Trebuchet must be used via:
 In order to begin running operations and sieging your Katello for performance data, a command line interface is provided using Thor.
 To see a list of all commands:
 
-  thor trebuchet:help
+    thor trebuchet:help
 
 To see a list of all operations:
 
-  thor threbuchet:operations
+    thor threbuchet:operations
 
 An operation is deployed via a siege and can be done so by:
 
-  thor trebuchet:siege <operation_name> -u <username> -p <password> -h <hostname>
+    thor trebuchet:siege <operation_name> -u <username> -p <password> -h <hostname>
 
 ## Operation Definitions
 
@@ -49,35 +47,35 @@ Available Engines:
 
 The example operation shown below is for a simple Organization create and delete:
 
-  module Trebuchet
-    module Operation
-      class Organization < Trebuchet::Engine::KatelloCommand
+    module Trebuchet
+      module Operation
+        class Organization < Trebuchet::Engine::KatelloCommand
 
-        ORG_NAME = "SomeOrg"
-        ENV_NAME = "DEV"
+          ORG_NAME = "SomeOrg"
+          ENV_NAME = "DEV"
 
-        def name
-          "Organization"
+          def name
+            "Organization"
+          end
+
+          def description
+            "Creates and deletes an organization"
+          end
+
+          def katello_commands
+            [  
+                { :id=> :org_create,
+                  :command => "org create --name=#{ORG_NAME}" },
+                { :id=>:env_create,
+                  :command=>"environment create --org=ACME_Corporation --name=#{ORG_NAME} --prior=Library"},
+                { :id=> :org_destroy,
+                  :command => "org delete --name=#{ORG_NAME}" }
+            ]
+          end
+
         end
-
-        def description
-          "Creates and deletes an organization"
-        end
-
-        def katello_commands
-          [  
-              { :id=> :org_create,
-                :command => "org create --name=#{ORG_NAME}" },
-              { :id=>:env_create,
-                :command=>"environment create --org=ACME_Corporation --name=#{ORG_NAME} --prior=Library"},
-              { :id=> :org_destroy,
-                :command => "org delete --name=#{ORG_NAME}" }
-          ]
-        end
-
       end
     end
-  end
 
 
 ### Test Types
