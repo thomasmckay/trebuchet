@@ -22,7 +22,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require './test/test_helper'
-require './test/support/operation_support'
 
 
 class TestDebrief < MiniTest::Unit::TestCase

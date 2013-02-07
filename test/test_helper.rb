@@ -25,9 +25,11 @@
 require 'rubygems'
 require 'minitest/autorun'
 require 'trebuchet'
+require './test/support/simple_bash'
 
 if !File.directory?("./tmp")
   Dir.mkdir("./tmp")
 end
     
 Trebuchet::Debrief.file_location = 'tmp/'
+Trebuchet::Runner.operations_location = './test/support/*.rb'
