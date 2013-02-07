@@ -21,18 +21,31 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'json'
+
 
 module Trebuchet
-  class Entry
+  class Debrief
 
-    attr_accessor :operation, :name, :duration, :details, :success
+    @file_location = "data/debriefs/"
 
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-      self.duration   = params[:duration]
-      self.details    = params[:details]
-      self.success    = params[:success]
+    def self.file_location=(path)
+      @@file_location = path
+    end
+
+    def initialize(metadata={})
+      @metadata = metadata
+    end
+
+    def save
+      entries = Trebuchet::Logger::RECORDS[@metadata[:operation]]
+      File.open(@@file_location + filename, "w+") do |file|
+        file.write(JSON.generate(@metadata.merge({ :data => entries })))
+      end
+    end
+
+    def filename
+      [@metadata[:operation], '_', Time.new.to_i, '.json'].join
     end
 
   end

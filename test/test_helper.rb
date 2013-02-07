@@ -22,18 +22,12 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-module Trebuchet
-  class Entry
+require 'rubygems'
+require 'minitest/autorun'
+require 'trebuchet'
 
-    attr_accessor :operation, :name, :duration, :details, :success
-
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-      self.duration   = params[:duration]
-      self.details    = params[:details]
-      self.success    = params[:success]
-    end
-
-  end
+if !File.directory?("./tmp")
+  Dir.mkdir("./tmp")
 end
+    
+Trebuchet::Debrief.file_location = 'tmp/'

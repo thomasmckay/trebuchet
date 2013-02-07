@@ -21,19 +21,26 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require './test/test_helper'
+require './test/support/operation_support'
 
-module Trebuchet
-  class Entry
 
-    attr_accessor :operation, :name, :duration, :details, :success
+class TestDebrief < MiniTest::Unit::TestCase
 
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-      self.duration   = params[:duration]
-      self.details    = params[:details]
-      self.success    = params[:success]
-    end
-
+  def setup
+    Trebuchet::Logger.clear_log
+    @operation = Trebuchet::Operation::SimpleBash.new
+    @debrief = Trebuchet::Debrief.new({ :operation => @operation.name })
   end
+
+  def test_filename
+    assert @debrief.filename.start_with?(@operation.name)
+  end
+
+  def test_save
+    @debrief.save
+
+    refute_empty Dir['./tmp/']
+  end
+
 end

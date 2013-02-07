@@ -29,17 +29,19 @@ module Trebuchet
       COMMAND = 'katello'
 
       def initialize(config={})
-        @config = config
+        @config   = config
+        @debrief  = Trebuchet::Debrief.new({ :operation => self })
       end
 
       def run
         self.katello_commands.each do |command|
           binary = @config[:base_command] ||  COMMAND
-          entry = Trebuchet::Entry.new({:operation=>self.name, :name=>command[:id]})
+          entry = Trebuchet::Entry.new({:operation => self.name, :name=>command[:id]})
           full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
               "--host #{@config[:host]} #{command[:command]}"
           self.run_command(entry, full_command)
         end
+        @debrief.save
       end
 
       def katello_commands
@@ -54,12 +56,13 @@ module Trebuchet
       end
 
       def time_command(entry, &block)
-          start_time = Time.now
-          yield
-          end_time = Time.now
-          entry.duration = (end_time - start_time).to_f
-          Trebuchet::Logger.log_entry(entry)
+        start_time = Time.now
+        yield
+        end_time = Time.now
+        entry.duration = (end_time - start_time).to_f
+        Trebuchet::Logger.log_entry(entry)
       end
+
     end
   end
 end

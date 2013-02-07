@@ -34,9 +34,13 @@ module Trebuchet
     def run(config, operation_name=nil)
       config = config.with_indifferent_access
 
-      gather_operations.each do |operation|
-        if operation_name.nil? || operation_name == operation.name
-          operation.new(config).run
+      if operation_name
+        get_operation(operation_name).new(config).run
+      else
+        gather_operations.each do |operation|
+          if operation_name.nil? || operation_name == operation.name
+            operation.new(config).run
+          end
         end
       end
     end
@@ -54,8 +58,12 @@ module Trebuchet
       files = Dir.glob(File.dirname(__FILE__) + '/operation/*.rb')
       files.collect do |file|
         file = File.basename(file, '.rb')
-        eval('Trebuchet::Operation::' + file.camelize)
+        get_operation(file)
       end
+    end
+
+    def get_operation(name)
+      eval('Trebuchet::Operation::' + name.camelize)
     end
 
   end

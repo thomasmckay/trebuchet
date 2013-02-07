@@ -21,37 +21,36 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require './test/test_helper'
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
 
 class TestSimpleCommand < MiniTest::Unit::TestCase
 
   def setup
+    @operation = Trebuchet::Operation::SimpleBash.new
     Trebuchet::Logger.clear_log
   end
 
   def test_ls
-    op = 'Foo'
     cmd = Trebuchet::Engine::KatelloCommand.new
-    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
+    entry = Trebuchet::Entry.new({:operation=>@operation.name, :name=>'bar'})
     cmd.run_command(entry, 'ls /tmp')
 
     logs =  Trebuchet::Logger.dump_log
-    assert_equal logs.size, 1 #single operation
-    assert_equal logs[op].size, 1 #single run in the operation
-    entry =  logs[op][0]
+    assert_equal 1, logs.size     #single operation
+    assert_equal 1, logs[@operation.name].size #single run in the operation
+
+    entry =  logs[@operation.name][0]
     assert_equal 'bar', entry.name
-    assert entry.success
+    assert       entry.success
   end
 
   def test_failure
-    op = 'Foo'
     cmd = Trebuchet::Engine::KatelloCommand.new
-    entry = Trebuchet::Entry.new({:operation=>op, :name=>'bar'})
+    entry = Trebuchet::Entry.new({:operation => @operation.name, :name=>'bar'})
     cmd.run_command(entry, 'ls /bad_directory')
     logs =  Trebuchet::Logger.dump_log
+
     refute entry.success
   end
 
