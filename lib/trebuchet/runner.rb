@@ -38,9 +38,7 @@ module Trebuchet
         get_operation(operation_name).new(config).run
       else
         gather_operations.each do |operation|
-          if operation_name.nil? || operation_name == operation.name
-            operation.new(config).run
-          end
+          operation.new(config).run
         end
       end
     end
