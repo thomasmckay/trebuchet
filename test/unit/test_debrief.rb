@@ -30,11 +30,11 @@ class TestDebrief < MiniTest::Unit::TestCase
   def setup
     Trebuchet::Logger.clear_log
     @operation = Trebuchet::Operation::SimpleBash.new
-    @debrief = Trebuchet::Debrief.new({ :operation => @operation.name })
+    @debrief = Trebuchet::Debrief.new({ :operation => @operation.class.name })
   end
 
   def test_filename
-    assert @debrief.filename.start_with?(@operation.name)
+    assert @debrief.filename.start_with?(@operation.class.name)
   end
 
   def test_save

@@ -29,15 +29,15 @@ module Trebuchet::Operation
     end
 
     def run
-      entry = Trebuchet::Entry.new({:operation => self.name, :name => 'ls'})
+      entry = Trebuchet::Entry.new({:operation => self.class.name, :name => 'ls'})
       Trebuchet::Logger.log_entry(entry)
     end
 
-    def name
+    def self.name
       "SimpleBash"
     end
 
-    def description
+    def self.description
       "Runs simple bash commands"
     end
 

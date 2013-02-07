@@ -29,8 +29,8 @@ class TestLogger < MiniTest::Unit::TestCase
 
   def setup
     @operation = Trebuchet::Operation::SimpleBash.new
-    @entry1 = Trebuchet::Entry.new({ :operation => @operation.name, :name => 'step_1' })
-    @entry2 = Trebuchet::Entry.new({ :operation => @operation.name, :name => 'step_2' })
+    @entry1 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_1' })
+    @entry2 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_2' })
     Trebuchet::Logger.log_entry(@entry1)
   end
 
@@ -41,8 +41,8 @@ class TestLogger < MiniTest::Unit::TestCase
   def test_log_entry
     Trebuchet::Logger.log_entry(@entry2)
 
-    refute_empty Trebuchet::Logger::RECORDS[@operation.name]
-    assert_equal 2, Trebuchet::Logger::RECORDS[@operation.name].length
+    refute_empty Trebuchet::Logger::RECORDS[@operation.class.name]
+    assert_equal 2, Trebuchet::Logger::RECORDS[@operation.class.name].length
   end
 
   def test_dump_log
