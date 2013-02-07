@@ -36,7 +36,7 @@ module Trebuchet
         self.katello_commands.each do |command|
           binary = @config[:base_command] ||  COMMAND
           entry = Trebuchet::Entry.new({:operation=>self.name, :name=>command[:id]})
-          full_command = "#{binary} -u #{@config[:user]} -p #{@config[:password]} " +
+          full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
               "--host #{@config[:host]} #{command[:command]}"
           self.run_command(entry, full_command)
         end
