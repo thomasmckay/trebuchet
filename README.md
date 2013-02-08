@@ -31,7 +31,7 @@ To see a list of all commands:
 
 To see a list of all operations:
 
-    thor threbuchet:operations
+    thor trebuchet:operations
 
 An operation is deployed via a siege and can be done so by:
 
