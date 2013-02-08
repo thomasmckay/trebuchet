@@ -51,10 +51,8 @@ module Trebuchet
     # 
     # @return [Array] list of available operations to deploy
     def list_operations
-      gather_operations
+      gather_operations.collect{ |op| op.name }
     end
-
-    private
 
     def gather_operations
       files = Dir.glob(@@operations_location)

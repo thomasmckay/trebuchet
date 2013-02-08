@@ -18,7 +18,7 @@ class Trebuchet < Thor
     puts "\n"
     puts "Operations Available for Deployment:"
     puts "\n"
-    runner.list_operations.each { |op| puts "        #{op.name} - #{op.description}        " }
+    runner.gather_operations.each { |op| puts "        #{op.name} - #{op.description}        " }
     puts "\n"
   end
 
