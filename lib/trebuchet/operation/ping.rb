@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat
+# Copyright (c) 2013 Red Hat
 #
 # MIT License
 #
@@ -21,11 +21,21 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    class Ping < Trebuchet::Engine::KatelloCommand
 
-resources = Dir[File.dirname(__FILE__) + '/trebuchet/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/base.rb']
+      def self.name
+        "ping"
+      end
 
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
-resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
+      def self.description
+        "Does katello ping, mainly for testing."
+      end
 
-resources.uniq.each{ |f| require f }
+      def katello_commands
+        [{:id=>'ping', :command=>'ping'}]
+      end
+    end
+  end
+end

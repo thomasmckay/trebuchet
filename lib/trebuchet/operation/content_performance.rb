@@ -23,7 +23,16 @@
 
 module Trebuchet
   module Operation
-    class PerformanceTesting < Trebuchet::Engine::KatelloCommand
+    class ContentPerformance < Trebuchet::Engine::KatelloCommand
+
+      def self.name
+        "ContentPerformance"
+      end
+
+      def self.description
+        "Does a large scale performance test with lots of RHEL repos."
+      end
+
 
       ENV_LIBRARY = "Library"
       ENV_DEV = "DEV"
@@ -43,19 +52,13 @@ module Trebuchet
       PACKAGE = 'telnet-server-0.17-47.el6'
       ERRATA = 'RHBA-2011:0923'
 
-      def name
-        "ContentPerformance"
-      end
-
-      def description
-        "Does a large scale performance test with lots of RHEL repos."
-      end
 
       def katello_commands
         @org = "PerformanceOrg#{rand(10000)}"
         commands  = setup_org
+
         manifest_path = File.dirname(__FILE__) + '/../../../data/manifest.zip'
-        raise "Manifest ./data/manifest.zip not found" if File.exists?(manifest_path)
+        raise "Manifest ./data/manifest.zip not found" if !File.exists?(manifest_path)
         commands += import_manifest(manifest_path)
         commands += enable_repo(REDHAT_PRODUCT, REDHAT_REPO)
         commands += sync(REDHAT_PRODUCT, REDHAT_REPO)
