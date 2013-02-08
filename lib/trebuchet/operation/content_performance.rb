@@ -81,38 +81,38 @@ module Trebuchet
       def setup_org
         [
           { :id=> :org_create,
-            :command => "org create --name=#{@org}" },
+            :command => "org create --name=#{esc(@org)}" },
           { :id=>:env_dev_create,
-            :command=>"environment create --org=#{@org} --name=#{ENV_DEV} --prior=Library"},
+            :command=>"environment create --org=#{esc(@org)} --name=#{esc(ENV_DEV)} --prior=Library"},
           { :id=>:env_prod_create,
-            :command=>"environment create --org=#{@org} --name=#{ENV_PROD} --prior=#{ENV_DEV}"}
+            :command=>"environment create --org=#{esc(@org)} --name=#{esc(ENV_PROD)} --prior=#{esc(ENV_DEV)}"}
         ]
       end
 
       def setup_custom_repo
         [
           { :id=>:provider_create,
-            :command=>"provider create --org=#{@org} --name=#{CUSTOM_PROVIDER}"},
+            :command=>"provider create --org=#{esc(@org)} --name=#{CUSTOM_PROVIDER}"},
           { :id=>:product_create,
-            :command=>"product create --org=#{@org} --provider=#{CUSTOM_PROVIDER} --name=#{SINGLE_PRODUCT}"},
+            :command=>"product create --org=#{esc(@org)} --provider=#{CUSTOM_PROVIDER} --name=#{SINGLE_PRODUCT}"},
           { :id=>:repo_create,
-            :command=>"repo create --org=#{@org} --product=#{SINGLE_PRODUCT} --name=#{CUSTOM_REPO} --url=#{REPO_URL}"}
+            :command=>"repo create --org=#{esc(@org)} --product=#{SINGLE_PRODUCT} --name=#{CUSTOM_REPO} --url=#{REPO_URL}"}
         ]
       end
 
       def import_manifest(file_path)
         [{ :id=> "upload_manifest",
-          :command => "provider import_manifest --org=#{@org} --name='Red Hat' --file=#{file_path}" }]
+          :command => "provider import_manifest --org=#{esc(@org)} --name='Red Hat' --file=#{file_path}" }]
       end
 
       def enable_repo(product, repo)
-        [{ :id=> "enable_repo_#{repo}",
-          :command => "repo enable --org=#{@org} --product=#{product} --name=#{repo}" }]
+        [{ :id=> "enable_repo_#{esc(repo)}",
+          :command => "repo enable --org=#{esc(@org)} --product=#{esc(product)} --name=#{esc(repo)}" }]
       end
 
       def sync(product, repo)
-        [{ :id=> "sync_repo_#{repo}",
-          :command => "repo synchronize --org=#{@org} --product=#{product} --name=#{repo}" }]
+        [{ :id=> "sync_repo_#{esc(repo)}",
+          :command => "repo synchronize --org=#{esc(@org)} --product=#{esc(product)} --name=#{esc(repo)}" }]
       end
 
       def promote_product(product)
@@ -122,11 +122,11 @@ module Trebuchet
         cs_name = "ChangesetProductPromote_#{unique_name}"
         [
           { :id=>"prod_promote_cs_create_#{unique_name}",
-            :command=>"changeset create --org=#{@org} --name=#{cs_name} --environment=#{ENV_DEV} --promotion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)} --promotion"},
           { :id=>"prod_promote_cs_add_product_#{unique_name}",
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name} --environment=#{ENV_DEV} --add_product=#{product}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)} --add_product=#{esc(product)}"},
           { :id=>"prod_promote_cs_promote_#{unique_name}",
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name} --environment=#{ENV_DEV}"}
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)}"}
         ]
       end
 
@@ -137,11 +137,11 @@ module Trebuchet
         cs_name = "ChangesetProductDemote_#{unique_name}"
         [
           { :id=>"prod_demote_cs_create_#{unique_name}",
-            :command=>"changeset create --org=#{@org} --name=#{cs_name} --environment=#{ENV_DEV} --deletion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)} --deletion"},
           { :id=>"prod_demote_add_product_#{unique_name}",
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name} --environment=#{ENV_DEV} --add_product=#{product}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)} --add_product=#{esc(product)}"},
           { :id=>"prod_demote_cs_promote_#{unique_name}",
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name} --environment=#{ENV_DEV}"}
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name)} --environment=#{esc(ENV_DEV)}"}
         ]
       end
 
@@ -150,19 +150,19 @@ module Trebuchet
         cs_name2 = "ChangesetPackagePromote"
         [
           { :id=>:pkg_demote_cs_create,
-            :command=>"changeset create --org=#{@org} --name=#{cs_name1} --environment=#{ENV_DEV} --deletion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)} --deletion"},
           { :id=>:pkg_demote_add_pkg,
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name1} --environment=#{ENV_DEV} " +
-                "--from_product=#{product} --add_package=#{package}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)} " +
+                "--from_product=#{esc(product)} --add_package=#{esc(PACKAGE)}"},
           { :id=>:pkg_demote_publish,
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name1} --environment=#{ENV_DEV}"},
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)}"},
           { :id=>:pkg_promote_cs_create,
-            :command=>"changeset create --org=#{@org} --name=#{cs_name2} --environment=#{ENV_DEV} --promotion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)} --promotion"},
           { :id=>:pkg_promote_add_pkg,
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name2} --environment=#{ENV_DEV} " +
-                "--from_product=#{product} --add_package=#{package}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)} " +
+                "--from_product=#{esc(product)} --add_package=#{esc(PACKAGE)}"},
           { :id=>:pkg_promote_publish,
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name2} --environment=#{ENV_DEV}"}
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)}"}
         ]
       end
 
@@ -171,25 +171,29 @@ module Trebuchet
         cs_name2 = "ChangesetErrataPromote"
         [
           { :id=>:errata_demote_cs_create,
-            :command=>"changeset create --org=#{@org} --name=#{cs_name1} --environment=#{ENV_DEV} --deletion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)} --deletion"},
           { :id=>:errata_demote_add_pkg,
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name1} --environment=#{ENV_DEV} " +
-                "--from_product=#{product} --add_erratum=#{errata}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)} " +
+                "--from_product=#{esc(product)} --add_erratum=#{esc(errata)}"},
           { :id=>:errata_demote_publish,
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name1} --environment=#{ENV_DEV}"},
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name1)} --environment=#{esc(ENV_DEV)}"},
           { :id=>:errata_promote_cs_create,
-            :command=>"changeset create --org=#{@org} --name=#{cs_name2} --environment=#{ENV_DEV} --promotion"},
+            :command=>"changeset create --org=#{esc(@org)} --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)} --promotion"},
           { :id=>:errata_promote_add_pkg,
-            :command=>"changeset update --org=#{@org}  --name=#{cs_name2} --environment=#{ENV_DEV} " +
-                "--from_product=#{product} --add_erratum=#{errata}"},
+            :command=>"changeset update --org=#{esc(@org)}  --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)} " +
+                "--from_product=#{esc(product)} --add_erratum=#{esc(errata)}"},
           { :id=>:errata_promote_publish,
-            :command=>"changeset promote --org=#{@org}  --name=#{cs_name2} --environment=#{ENV_DEV}"}
+            :command=>"changeset promote --org=#{esc(@org)}  --name=#{esc(cs_name2)} --environment=#{esc(ENV_DEV)}"}
         ]
       end
 
       def cleanup
           [{ :id=> :org_destroy,
-            :command => "org delete --name=#{@org}" }]
+            :command => "org delete --name=#{esc(@org)}" }]
+      end
+
+      def esc(string)
+        "\"#{string}\""
       end
 
     end
