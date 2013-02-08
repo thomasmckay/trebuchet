@@ -32,7 +32,7 @@ module Trebuchet
       end
 
       def run
-        raise NotImplemented
+        raise NotImplementedError
       end
 
       def run_command(entry, command)

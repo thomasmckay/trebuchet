@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Red Hat
+# Copyright (c) 2013 Red HatV
 #
 # MIT License
 #
@@ -21,32 +21,39 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module Trebuchet::Operation
-  class SimpleBash
+require './test/test_helper'
 
-    def initialize(config={})
-      @config   = config
-    end
 
-    def run
-      entry = Trebuchet::Entry.new({:operation => self.class.name, :name => 'echo'})
-      Trebuchet::Logger.log_entry(entry)
-    end
+class TestBase < MiniTest::Unit::TestCase
 
-    def self.name
-      "SimpleBash"
-    end
-
-    def self.description
-      "Runs simple bash commands"
-    end
-
-    def bash_commands
-      [
-          { :id=> :echo,
-            :command => "echo simple_bash_test" }
-      ]
-    end
-
+  def setup
+    @operation = Trebuchet::Operation::SimpleBash.new
+    @entry1 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_1' })
+    @base = Trebuchet::Engine::Base.new
   end
+
+  def teardown
+    Trebuchet::Logger.clear_log
+  end
+
+  def test_run
+    assert_raises(NotImplementedError) do
+      @base.run
+    end
+  end
+
+  def test_time_command
+    @base.time_command(@entry1) do
+      puts ""
+    end
+
+    refute_empty Trebuchet::Logger::RECORDS
+  end
+
+  def test_run_command
+    @base.run_command(@entry1, 'echo test_run_command')
+
+    refute_empty Trebuchet::Logger::RECORDS
+  end
+
 end
