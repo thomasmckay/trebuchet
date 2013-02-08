@@ -23,38 +23,36 @@
 
 
 module Trebuchet
-  class Entry
+  module Engine
+    class Base
 
-    attr_accessor :operation, :name, :duration, :start_time,
-                  :input, :output, :success
+      def initialize(config={})
+        @config   = config
+        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name })
+      end
 
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
+      def run
+        raise NotImplemented
+      end
 
-      self.duration   = params[:duration]
-      self.start_time = params[:start_time]
+      def run_command(entry, command)
+        time_command(entry) do
+          entry.input   = command
+          entry.success = system(command)
+        end
+      end
 
-      self.output   = params[:output]
-      self.input    = params[:input]
-      self.success  = params[:success]
+      def time_command(entry, &block)
+        start_time = Time.now
+        yield
+        end_time = Time.now
+
+        entry.start_time  = start_time.to_f
+        entry.duration    = (end_time - start_time).to_f
+
+        Trebuchet::Logger.log_entry(entry)
+      end
+
     end
-
-    def to_hash
-      { :id => self.name,
-
-        :performance => { 
-          :duration   => self.duration,
-          :start_time => self.start_time
-        },
-
-        :details => {
-          :output   => self.output,
-          :input    => self.input,
-          :success  => self.success
-        }
-      }
-    end
-
   end
 end

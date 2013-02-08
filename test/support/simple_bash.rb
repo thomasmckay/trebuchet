@@ -21,39 +21,31 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet::Operation
+  class SimpleBash
 
-module Trebuchet
-  class Entry
-
-    attr_accessor :operation, :name, :duration, :start_time,
-                  :input, :output, :success
-
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-
-      self.duration   = params[:duration]
-      self.start_time = params[:start_time]
-
-      self.output   = params[:output]
-      self.input    = params[:input]
-      self.success  = params[:success]
+    def initialize(config={})
+      @config   = config
     end
 
-    def to_hash
-      { :id => self.name,
+    def run
+      entry = Trebuchet::Entry.new({:operation => self.class.name, :name => 'ls'})
+      Trebuchet::Logger.log_entry(entry)
+    end
 
-        :performance => { 
-          :duration   => self.duration,
-          :start_time => self.start_time
-        },
+    def self.name
+      "SimpleBash"
+    end
 
-        :details => {
-          :output   => self.output,
-          :input    => self.input,
-          :success  => self.success
-        }
-      }
+    def self.description
+      "Runs simple bash commands"
+    end
+
+    def bash_commands
+      [
+          { :id=> :ls,
+            :command => "ls" }
+      ]
     end
 
   end

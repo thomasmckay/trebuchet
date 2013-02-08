@@ -27,6 +27,12 @@ require 'active_support/core_ext/hash' #with_indifferent_access
 module Trebuchet
   class Runner
 
+    @@operations_location = File.dirname(__FILE__) + '/operation/*.rb'
+
+    def self.operations_location=(path)
+      @@operations_location = path
+    end
+
     # Run all operations, or a specific operation
     #
     # @param  [Hash]    config          config hash to pass to operations (currently  :host, :user, :password)
@@ -45,17 +51,19 @@ module Trebuchet
     # 
     # @return [Array] list of available operations to deploy
     def list_operations
-      gather_operations.collect{|o| o.new}
+      gather_operations.collect{ |op| op.name }
     end
 
-    private
-
     def gather_operations
-      files = Dir.glob(File.dirname(__FILE__) + '/operation/*.rb')
+      files = Dir.glob(@@operations_location)
       files.collect do |file|
         file = File.basename(file, '.rb')
-        eval('Trebuchet::Operation::' + file.camelize)
+        get_operation(file)
       end
+    end
+
+    def get_operation(name)
+      Trebuchet::Operation.const_get(name.camelize)
     end
 
   end

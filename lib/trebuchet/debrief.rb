@@ -21,39 +21,43 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'json'
+
 
 module Trebuchet
-  class Entry
+  class Debrief
 
-    attr_accessor :operation, :name, :duration, :start_time,
-                  :input, :output, :success
+    @@data_dir = "data/debriefs/"
 
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-
-      self.duration   = params[:duration]
-      self.start_time = params[:start_time]
-
-      self.output   = params[:output]
-      self.input    = params[:input]
-      self.success  = params[:success]
+    def self.data_dir=(path)
+      @@data_dir = path
     end
 
-    def to_hash
-      { :id => self.name,
+    def initialize(metadata={})
+      @metadata = metadata
+    end
 
-        :performance => { 
-          :duration   => self.duration,
-          :start_time => self.start_time
-        },
+    def save
+      create_operation_directory
+      File.open([@@data_dir, @metadata[:operation], '/', filename].join, "w+") do |file|
+        file.write(JSON.generate(@metadata.merge({ :data => format_entries })))
+      end
+    end
 
-        :details => {
-          :output   => self.output,
-          :input    => self.input,
-          :success  => self.success
-        }
-      }
+    def create_operation_directory
+      if !File.directory?(@@data_dir + @metadata[:operation])
+        Dir.mkdir(@@data_dir + @metadata[:operation])
+      end
+    end
+
+    def filename
+      timestamp = Time.now.strftime('%Y_%m_%d_%H%M%S')
+      [@metadata[:operation], '_', timestamp, '.json'].join
+    end
+
+    def format_entries
+      entries = Trebuchet::Logger::RECORDS[@metadata[:operation]]
+      entries.nil? ? [] : entries.map(&:to_hash)
     end
 
   end

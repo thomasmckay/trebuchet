@@ -22,39 +22,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-module Trebuchet
-  class Entry
+require 'rubygems'
+require 'minitest/autorun'
+require 'trebuchet'
+require './test/support/simple_bash'
 
-    attr_accessor :operation, :name, :duration, :start_time,
-                  :input, :output, :success
-
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-
-      self.duration   = params[:duration]
-      self.start_time = params[:start_time]
-
-      self.output   = params[:output]
-      self.input    = params[:input]
-      self.success  = params[:success]
-    end
-
-    def to_hash
-      { :id => self.name,
-
-        :performance => { 
-          :duration   => self.duration,
-          :start_time => self.start_time
-        },
-
-        :details => {
-          :output   => self.output,
-          :input    => self.input,
-          :success  => self.success
-        }
-      }
-    end
-
-  end
+if !File.directory?("./tmp")
+  Dir.mkdir("./tmp")
 end
+    
+Trebuchet::Debrief.data_dir = 'tmp/'
+Trebuchet::Runner.operations_location = './test/support/*.rb'

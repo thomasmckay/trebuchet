@@ -21,22 +21,21 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require './test/test_helper'
 
-require 'rubygems'
-require 'trebuchet'
-require 'minitest/autorun'
 
 class TestRunner < MiniTest::Unit::TestCase
 
   def setup
+    @operation = Trebuchet::Operation::SimpleBash.new
     Trebuchet::Logger.clear_log
   end
 
   def test_simple_config
     runner = Trebuchet::Runner.new
-    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake'})
+    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake'}, @operation.class.name)
+
     refute_empty Trebuchet::Logger.dump_log
   end
-
 
 end

@@ -24,19 +24,27 @@
 
 class Trebuchet::Logger
 
-
   RECORDS = {}
 
   def self.log_entry(entry)
     RECORDS[entry.operation] ||= []
-    RECORDS[entry.operation]<< entry
+    RECORDS[entry.operation] << entry
   end
 
-  def self.dump_log
-    RECORDS
+  def self.dump_log(operation_name=nil)
+    if operation_name 
+      RECORDS[operation_name]
+    else
+      RECORDS
+    end
   end
 
-  def self.clear_log
-    RECORDS.clear
+  def self.clear_log(operation_name=nil)
+    if operation_name 
+      RECORDS.delete(operation_name)
+    else
+      RECORDS.clear
+    end
   end
+
 end

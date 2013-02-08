@@ -28,11 +28,11 @@ module Trebuchet
       ORG_NAME = "SomeOrg"
       ENV_NAME = "DEV"
 
-      def name
+      def self.name
         "LargeSync"
       end
 
-      def description
+      def self.description
         "Peforms a content sync to Library using a large repository"
       end
 

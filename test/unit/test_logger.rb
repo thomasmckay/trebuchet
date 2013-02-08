@@ -21,40 +21,39 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require './test/test_helper'
 
-module Trebuchet
-  class Entry
 
-    attr_accessor :operation, :name, :duration, :start_time,
-                  :input, :output, :success
+class TestLogger < MiniTest::Unit::TestCase
 
-    def initialize(params={})
-      self.operation  = params[:operation]
-      self.name       = params[:name]
-
-      self.duration   = params[:duration]
-      self.start_time = params[:start_time]
-
-      self.output   = params[:output]
-      self.input    = params[:input]
-      self.success  = params[:success]
-    end
-
-    def to_hash
-      { :id => self.name,
-
-        :performance => { 
-          :duration   => self.duration,
-          :start_time => self.start_time
-        },
-
-        :details => {
-          :output   => self.output,
-          :input    => self.input,
-          :success  => self.success
-        }
-      }
-    end
-
+  def setup
+    @operation = Trebuchet::Operation::SimpleBash.new
+    @entry1 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_1' })
+    @entry2 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_2' })
+    Trebuchet::Logger.log_entry(@entry1)
   end
+
+  def teardown
+    Trebuchet::Logger.clear_log
+  end
+
+  def test_log_entry
+    Trebuchet::Logger.log_entry(@entry2)
+
+    refute_empty Trebuchet::Logger::RECORDS[@operation.class.name]
+    assert_equal 2, Trebuchet::Logger::RECORDS[@operation.class.name].length
+  end
+
+  def test_dump_log
+    dump = Trebuchet::Logger.dump_log
+
+    refute_empty dump
+  end
+
+  def test_clear_log
+    Trebuchet::Logger.clear_log
+
+    assert_empty Trebuchet::Logger::RECORDS
+  end
+
 end
