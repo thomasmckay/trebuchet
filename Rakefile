@@ -6,7 +6,7 @@ require "rake/testtask"
 namespace :test do
   "Runs the unit tests"
   Rake::TestTask.new :unit do |t|
-    t.pattern = 'test/unit/test_*.rb'
+    t.pattern = 'test/unit/**/test_*.rb'
   end
 
 end

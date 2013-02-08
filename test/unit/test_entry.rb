@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Red Hat
+# Copyright (c) 2013 Red HatV
 #
 # MIT License
 #
@@ -21,32 +21,33 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module Trebuchet::Operation
-  class SimpleBash
+require './test/test_helper'
 
-    def initialize(config={})
-      @config   = config
-    end
 
-    def run
-      entry = Trebuchet::Entry.new({:operation => self.class.name, :name => 'echo'})
-      Trebuchet::Logger.log_entry(entry)
-    end
+class TestLogger < MiniTest::Unit::TestCase
 
-    def self.name
-      "SimpleBash"
-    end
+  def setup
+    @operation = Trebuchet::Operation::SimpleBash.new
+    @entry1 = Trebuchet::Entry.new({ :operation => @operation.class.name, :name => 'step_1' })
+  end
 
-    def self.description
-      "Runs simple bash commands"
-    end
+  def teardown
+    Trebuchet::Logger.clear_log
+  end
 
-    def bash_commands
-      [
-          { :id=> :echo,
-            :command => "echo simple_bash_test" }
-      ]
-    end
+  def test_to_hash
+    entry_as_hash = { :id => 'step_1',
+      :performance => { 
+        :duration   => nil,
+        :start_time => nil
+      },
+      :details => {
+        :output   => nil,
+        :input    => nil,
+        :success  => nil
+      }
+    }
 
+    assert_equal entry_as_hash, @entry1.to_hash
   end
 end
