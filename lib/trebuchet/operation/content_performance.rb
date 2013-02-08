@@ -44,7 +44,7 @@ module Trebuchet
       ERRATA = 'RHBA-2011:0923'
 
       def name
-        "PerformanceTest"
+        "ContentPerformance"
       end
 
       def description
