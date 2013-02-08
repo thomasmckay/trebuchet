@@ -27,10 +27,10 @@ require 'json'
 module Trebuchet
   class Debrief
 
-    @file_location = "data/debriefs/"
+    @@data_dir = "data/debriefs/"
 
-    def self.file_location=(path)
-      @@file_location = path
+    def self.data_dir=(path)
+      @@data_dir = path
     end
 
     def initialize(metadata={})
@@ -38,14 +38,26 @@ module Trebuchet
     end
 
     def save
-      entries = Trebuchet::Logger::RECORDS[@metadata[:operation]]
-      File.open(@@file_location + filename, "w+") do |file|
-        file.write(JSON.generate(@metadata.merge({ :data => entries })))
+      create_operation_directory
+      File.open([@@data_dir, @metadata[:operation], '/', filename].join, "w+") do |file|
+        file.write(JSON.generate(@metadata.merge({ :data => format_entries })))
+      end
+    end
+
+    def create_operation_directory
+      if !File.directory?(@@data_dir + @metadata[:operation])
+        Dir.mkdir(@@data_dir + @metadata[:operation])
       end
     end
 
     def filename
-      [@metadata[:operation], '_', Time.new.to_i, '.json'].join
+      timestamp = Time.now.strftime('%Y_%m_%d_%H%M%S')
+      [@metadata[:operation], '_', timestamp, '.json'].join
+    end
+
+    def format_entries
+      entries = Trebuchet::Logger::RECORDS[@metadata[:operation]]
+      entries.nil? ? [] : entries.map(&:to_hash)
     end
 
   end

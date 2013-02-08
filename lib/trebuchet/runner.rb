@@ -51,7 +51,7 @@ module Trebuchet
     # 
     # @return [Array] list of available operations to deploy
     def list_operations
-      gather_operations.collect{|o| o.class.name }
+      gather_operations
     end
 
     private

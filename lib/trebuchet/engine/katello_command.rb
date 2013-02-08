@@ -24,14 +24,9 @@
 
 module Trebuchet
   module Engine
-    class KatelloCommand
+    class KatelloCommand < Trebuchet::Engine::Base
 
       COMMAND = 'katello'
-
-      def initialize(config={})
-        @config   = config
-        @debrief  = Trebuchet::Debrief.new({ :operation => self })
-      end
 
       def run
         self.katello_commands.each do |command|
@@ -46,21 +41,6 @@ module Trebuchet
 
       def katello_commands
         raise "katello_commands not implemented"
-      end
-
-      def run_command(entry, command)
-        time_command(entry) do
-          entry.details = command
-          entry.success = system(command)
-        end
-      end
-
-      def time_command(entry, &block)
-        start_time = Time.now
-        yield
-        end_time = Time.now
-        entry.duration = (end_time - start_time).to_f
-        Trebuchet::Logger.log_entry(entry)
       end
 
     end

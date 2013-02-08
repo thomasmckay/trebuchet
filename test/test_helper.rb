@@ -31,5 +31,5 @@ if !File.directory?("./tmp")
   Dir.mkdir("./tmp")
 end
     
-Trebuchet::Debrief.file_location = 'tmp/'
+Trebuchet::Debrief.data_dir = 'tmp/'
 Trebuchet::Runner.operations_location = './test/support/*.rb'
