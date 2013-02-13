@@ -49,9 +49,8 @@ module Trebuchet
                        "Red Hat Enterprise Linux 6 Server RPMs i386 6.3",
                        "Red Hat Enterprise Linux 6 Server RPMs i386 6Server"]
 
-      PACKAGE = 'telnet-server-0.17-47.el6'
-      ERRATA = 'RHBA-2011:0923'
-
+      PACKAGE = 'telnet-server-0.17-47.el6-x86_64'
+      ERRATA = 'RHSA-2010:0862'
 
       def katello_commands
         @org = "PerformanceOrg#{rand(10000)}"
@@ -101,7 +100,7 @@ module Trebuchet
       end
 
       def import_manifest(file_path)
-        [{ :id=> "upload_manifest",
+        [{ :id=> "upload_manifest", :sleep_after=>600,
           :command => "provider import_manifest --org=#{esc(@org)} --name='Red Hat' --file=#{file_path}" }]
       end
 
