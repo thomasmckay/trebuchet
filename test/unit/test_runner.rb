@@ -33,7 +33,7 @@ class TestRunner < MiniTest::Unit::TestCase
 
   def test_simple_config
     runner = Trebuchet::Runner.new
-    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake'}, @operation.class.name)
+    runner.run({:user=>'admin', :password=>'admin', :host=>'fake.host.is.fake', :name => 'Siege1' }, @operation.class.name)
 
     refute_empty Trebuchet::Logger.dump_log
   end

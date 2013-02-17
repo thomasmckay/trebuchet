@@ -28,7 +28,7 @@ module Trebuchet
 
       def initialize(config={})
         @config   = config
-        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name })
+        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name, :name => config['name'] })
       end
 
       def run
