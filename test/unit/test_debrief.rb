@@ -29,7 +29,7 @@ class TestDebrief < MiniTest::Unit::TestCase
   def setup
     Trebuchet::Logger.clear_log
     @operation = Trebuchet::Operation::SimpleBash
-    @debrief = Trebuchet::Debrief.new({ :operation => @operation.name })
+    @debrief = Trebuchet::Debrief.new({ :operation => @operation.name, :name => 'Siege1'})
   end
 
   def test_filename
