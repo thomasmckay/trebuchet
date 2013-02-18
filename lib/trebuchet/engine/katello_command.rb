@@ -35,6 +35,7 @@ module Trebuchet
           full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
               "--host #{@config[:host]} #{command[:command]}"
           self.run_command(entry, full_command)
+          sleep(command[:sleep_after]) if command[:sleep_after]
         end
         @debrief.save
       end

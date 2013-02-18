@@ -39,6 +39,7 @@ module Trebuchet
         time_command(entry) do
           entry.input   = command
           entry.success = system(command)
+          print entry.input + "\n" if !entry.success
         end
       end
 
