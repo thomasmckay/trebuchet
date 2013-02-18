@@ -6,6 +6,7 @@ class Trebuchet < Thor
   method_option :username, :aliases => '-u', :desc => "Username for the host targeted", :required => true
   method_option :password, :aliases => '-p', :desc => "Password for the host targeted", :required => true
   method_option :host,     :aliases => '-h', :desc => "Host of the targeted server", :required => true
+  method_option :name,     :aliases => '-n', :desc => "Name for the siege", :required => true
   def siege(operation)
     engine = ::Trebuchet::Runner.new
     puts "Beginning siege of Katello using #{operation}"

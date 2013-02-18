@@ -21,31 +21,29 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module Trebuchet::Operation
-  class SimpleBash
+require 'json'
 
-    def initialize(config={})
-      @config   = config
+
+module Trebuchet
+  class DebriefCollection
+
+    @@data_dir = "data/debriefs/"
+
+    def self.data_dir=(path)
+      @@data_dir = path
     end
 
-    def run
-      entry = Trebuchet::Entry.new({:operation => self.class.name, :name => 'echo'})
-      Trebuchet::Logger.log_entry(entry)
-    end
+    def get(operation_name)
+      files = Dir[File.dirname(__FILE__) + '/../../' +  @@data_dir + "/#{operation_name}/*.json"]
+      debriefs = []
 
-    def self.name
-      "SimpleBash"
-    end
+      files.each do |file_path|
+        File.open(file_path, "r") do |file|
+          debriefs << JSON.parse(file.read)
+        end
+      end
 
-    def self.description
-      "Runs simple bash commands"
-    end
-
-    def bash_commands
-      [
-          { :id=> :echo,
-            :command => "echo simple_bash_test" }
-      ]
+      return debriefs
     end
 
   end

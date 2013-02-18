@@ -28,11 +28,11 @@ module Trebuchet
 
       def initialize(config={})
         @config   = config
-        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name })
+        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name, :name => config['name'] })
       end
 
       def run
-        raise NotImplemented
+        raise NotImplementedError
       end
 
       def run_command(entry, command)

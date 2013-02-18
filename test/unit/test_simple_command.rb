@@ -34,7 +34,7 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
   def test_ls
     cmd = Trebuchet::Engine::KatelloCommand.new
     entry = Trebuchet::Entry.new({:operation=>@operation.class.name, :name=>'bar'})
-    cmd.run_command(entry, 'ls /tmp')
+    cmd.run_command(entry, 'echo simple_command')
 
     logs =  Trebuchet::Logger.dump_log
     assert_equal 1, logs.size     #single operation
@@ -48,7 +48,7 @@ class TestSimpleCommand < MiniTest::Unit::TestCase
   def test_failure
     cmd = Trebuchet::Engine::KatelloCommand.new
     entry = Trebuchet::Entry.new({:operation => @operation.class.name, :name=>'bar'})
-    cmd.run_command(entry, 'ls /bad_directory')
+    cmd.run_command(entry, 'echosimple_command')
     logs =  Trebuchet::Logger.dump_log
 
     refute entry.success
