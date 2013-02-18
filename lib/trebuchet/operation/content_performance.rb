@@ -49,7 +49,7 @@ module Trebuchet
                        "Red Hat Enterprise Linux 6 Server RPMs i386 6.3",
                        "Red Hat Enterprise Linux 6 Server RPMs i386 6Server"]
 
-      PACKAGE = 'telnet-server-0.17-47.el6-x86_64'
+      PACKAGE = 'telnet-server'
       ERRATA = 'RHSA-2010:0862'
 
       def katello_commands
