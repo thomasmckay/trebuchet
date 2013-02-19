@@ -37,7 +37,6 @@ module Trebuchet
           self.run_command(entry, full_command)
           sleep(command[:sleep_after]) if command[:sleep_after]
         end
-        @debrief.save
       end
 
       def katello_commands
