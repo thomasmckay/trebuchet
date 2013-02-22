@@ -40,7 +40,7 @@ module Trebuchet
     end
 
     def save
-      File.open([@@data_dir, @metadata[:operation], '/', filename].join, "w+") do |file|
+      File.open([@@data_dir, @metadata[:operation], '/', @filename].join, "w+") do |file|
         file.write(JSON.generate(@metadata.merge({ :data => format_entries })))
       end
     end
