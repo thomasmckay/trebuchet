@@ -72,7 +72,7 @@ module Trebuchet
         end
         commands += promote_product(REDHAT_PRODUCT)
         commands += demote_product(REDHAT_PRODUCT)
-        commands += cleanup
+        commands += cleanup if @config[:cleanup]
         commands
       end
 
