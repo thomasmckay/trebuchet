@@ -1,0 +1,2092 @@
+{
+    "_href": "/pulp/api/v2/consumers/22eaa87c-76a1-4d5a-af34-f6a167e3bc44/profiles/rpm/22eaa87c-76a1-4d5a-af34-f6a167e3bc44/rpm/", 
+    "_id": {
+        "$oid": "51360d559c60ed183200005e"
+    }, 
+    "_ns": "consumer_unit_profiles", 
+    "consumer_id": "22eaa87c-76a1-4d5a-af34-f6a167e3bc44", 
+    "content_type": "rpm", 
+    "id": "51360d559c60ed183200005e", 
+    "profile": [
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "gofer", 
+            "release": "1.el6", 
+            "vendor": null, 
+            "version": "0.74"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "setup", 
+            "release": "13.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.8.14"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "candlepin-cert-consumer-dhcp231-16.rdu.redhat.com", 
+            "release": "1", 
+            "vendor": "None", 
+            "version": "1.0"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "basesystem", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "10.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ntp", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.2.4p8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ncurses-base", 
+            "release": "3.20090208.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.7"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "katello-agent", 
+            "release": "1.el6", 
+            "vendor": "Koji", 
+            "version": "1.1.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "glibc-common", 
+            "release": "1.47.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "glibc", 
+            "release": "1.47.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "bash", 
+            "release": "8.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.1.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libcap", 
+            "release": "5.5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.16"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "info", 
+            "release": "8.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.13a"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "popt", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.13"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libcom_err", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.41.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libacl", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.2.49"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libsepol", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.41"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "glib2", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.22.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "sed", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.2.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "bzip2-libs", 
+            "release": "7.el6_0", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "readline", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "6.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "dbus-libs", 
+            "release": "5.el6_1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.24"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libstdc++", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.4.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "grep", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "sqlite", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.6.20"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "iptables", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "file-libs", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.04"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libuuid", 
+            "release": "12.4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.17.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "xz-libs", 
+            "release": "0.3.beta.20091007git.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.999.9"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libgpg-error", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "findutils", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.4.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "checkpolicy", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.22"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "tcp_wrappers-libs", 
+            "release": "57.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "expat", 
+            "release": "9.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pth", 
+            "release": "9.3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "grubby", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.0.15"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "iptables-ipv6", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gmp", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.3.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libnih", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libgudev1", 
+            "release": "2.40.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "147"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "MAKEDEV", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.24"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "procps", 
+            "release": "21.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.2.8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "psmisc", 
+            "release": "15.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "22.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "db4-utils", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.7.25"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "e2fsprogs-libs", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.41.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "diffutils", 
+            "release": "28.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.8.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "m4", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.13"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ncurses", 
+            "release": "3.20090208.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "less", 
+            "release": "10.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "436"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gzip", 
+            "release": "18.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.3.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cracklib-dicts", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.8.16"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pam", 
+            "release": "10.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.1.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "hwdata", 
+            "release": "7.6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.233"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "plymouth-scripts", 
+            "release": "24.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.8.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nss", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.12.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "openldap", 
+            "release": "20.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.4.23"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "passwd", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.77"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pciutils-libs", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.1.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "mingetty", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.08"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "krb5-libs", 
+            "release": "22.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.9"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libssh2", 
+            "release": "7.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gnupg2", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.14"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "curl", 
+            "release": "26.el6_1.2", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.19.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rpm", 
+            "release": "19.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.8.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "fipscheck-lib", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ustr", 
+            "release": "9.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gdbm", 
+            "release": "36.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.8.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-libs", 
+            "release": "29.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.6"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-iniparse", 
+            "release": "2.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.3.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "dbus-python", 
+            "release": "6.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.83.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "m2crypto", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.20.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-dmidecode", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.10.13"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "PyXML", 
+            "release": "19.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.8.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pygpgme", 
+            "release": "18.20090824bzr68.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-urlgrabber", 
+            "release": "8.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.9.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pygobject2", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.20.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pyOpenSSL", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libnl", 
+            "release": "14.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "dmidecode", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.11"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "slang", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.2.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rhn-client-tools", 
+            "release": "73.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "plymouth-core-libs", 
+            "release": "24.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.8.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "redhat-release-server", 
+            "release": "6.2.0.3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "6Server"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "util-linux-ng", 
+            "release": "12.4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.17.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "udev", 
+            "release": "2.40.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "147"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "device-mapper", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.02.66"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "policycoreutils", 
+            "release": "19.18.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.83"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "device-mapper-event", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.02.66"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "kbd", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.15"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "openssh", 
+            "release": "70.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.3p1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "postfix", 
+            "release": "2.2.el6_1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cronie", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "virt-what", 
+            "release": "1.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.11"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rhnsd", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.9.3"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "yum-rhn-plugin", 
+            "release": "36.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.9.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 12, 
+            "name": "dhcp-common", 
+            "release": "25.P1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.1.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libdrm", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.4.25"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "dracut", 
+            "release": "256.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "004"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "kernel", 
+            "release": "220.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.32"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "subscription-manager", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.96.17"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "lvm2", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.02.87"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl6000g2b-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "17.168.5.2"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl5150-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "8.24.2.2"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl6050-firmware", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "41.28.5.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl6000g2a-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "17.168.5.3"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl6000-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "9.221.4.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "authconfig", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "6.1.12"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "system-config-firewall-base", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.27"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "sudo", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.7.4p5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "e2fsprogs", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.41.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "attr", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.4.44"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl5000-firmware", 
+            "release": "1.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "8.83.5.1_1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 2, 
+            "name": "ivtv-firmware", 
+            "release": "20.2", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "20080701"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "xorg-x11-drv-ati-firmware", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "6.14.2"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "atmel-firmware", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.3"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl4965-firmware", 
+            "release": "2.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "228.61.2.24"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl3945-firmware", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "15.32.2.9"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rt73usb-firmware", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.8"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ql23xx-firmware", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.03.27"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rootfiles", 
+            "release": "6.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "8.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 3, 
+            "name": "perl-version", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.77"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 4, 
+            "name": "perl-libs", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.10.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 4, 
+            "name": "perl", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.10.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "vim-common", 
+            "release": "1.6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.2.411"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libedit", 
+            "release": "4.20080712cvs.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.11"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rsync", 
+            "release": "5.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.0.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "git", 
+            "release": "2.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.7.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-pulp-common", 
+            "release": "0.2.beta", 
+            "vendor": null, 
+            "version": "2.0.6"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-pulp-rpm-common", 
+            "release": "0.2.beta", 
+            "vendor": null, 
+            "version": "2.0.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "PyPAM", 
+            "release": "12.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.5.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-saslwrapper", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.14"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-gofer", 
+            "release": "1.el6", 
+            "vendor": null, 
+            "version": "0.74"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libgcc", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.4.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "filesystem", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.4.30"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ntpdate", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.2.4p8"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ca-certificates", 
+            "release": "3.el6_1.5", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2010.63"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "gofer-package", 
+            "release": "1.el6", 
+            "vendor": "Fedora Project", 
+            "version": "0.74"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "tzdata", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2011l"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nss-softokn-freebl", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.12.9"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "ncurses-libs", 
+            "release": "3.20090208.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libattr", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.4.44"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "zlib", 
+            "release": "27.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "audit-libs", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.1.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "chkconfig", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.3.47"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "db4", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.7.25"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nspr", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.8.8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libselinux", 
+            "release": "5.2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.94"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gamin", 
+            "release": "9.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.1.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "shadow-utils", 
+            "release": "13.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.1.4.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nss-util", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.12.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libudev", 
+            "release": "2.40.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "147"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gawk", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.1.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pcre", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "lua", 
+            "release": "4.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.1.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cyrus-sasl-lib", 
+            "release": "13.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.1.23"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libidn", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.18"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libxml2", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.7.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libblkid", 
+            "release": "12.4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.17.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "elfutils-libelf", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.152"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "bzip2", 
+            "release": "7.el6_0", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libselinux-utils", 
+            "release": "5.2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.94"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cpio", 
+            "release": "9.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "sysvinit-tools", 
+            "release": "4.dsf.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.87"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "dbus-glib", 
+            "release": "5.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.86"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libgcrypt", 
+            "release": "9.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "iproute", 
+            "release": "17.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.32"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nss-softokn", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.12.9"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libusb", 
+            "release": "23.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.1.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "upstart", 
+            "release": "10.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.6.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libutempter", 
+            "release": "4.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.1.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "vim-minimal", 
+            "release": "1.6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.2.411"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "net-tools", 
+            "release": "109.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.60"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "tar", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.23"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libss", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.41.12"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "pinentry", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.7.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "binutils", 
+            "release": "5.28.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.20.51.0.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "which", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.19"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "groff", 
+            "release": "21.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.18.1.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "coreutils-libs", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "8.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cracklib", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.8.16"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "coreutils", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "8.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "module-init-tools", 
+            "release": "17.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.9"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "redhat-logos", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "60.0.14"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "logrotate", 
+            "release": "12.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.7.8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "nss-sysinit", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.12.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libuser", 
+            "release": "4.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.56.13"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libcap-ng", 
+            "release": "3.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.6.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "ethtool", 
+            "release": "0.3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.33"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "keyutils-libs", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "openssl", 
+            "release": "20.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libcurl", 
+            "release": "26.el6_1.2", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.19.7"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gpgme", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.1.8"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rpm-libs", 
+            "release": "19.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.8.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "mysql-libs", 
+            "release": "1.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.1.52"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "fipscheck", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libsemanage", 
+            "release": "4.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.43"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libffi", 
+            "release": "3.2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.0.5"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python", 
+            "release": "29.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-simplejson", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.0.9"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rpm-python", 
+            "release": "19.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.8.0"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "libxml2-python", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.7.6"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-rhsm", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.96.15"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "yum-metadata-parser", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.1.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-pycurl", 
+            "release": "8.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.19.0"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "yum", 
+            "release": "22.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.2.29"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-gudev", 
+            "release": "4.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "147.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rhnlib", 
+            "release": "12.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.5.22"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "python-ethtool", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "dash", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.5.5.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "newt", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.52.11"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "newt-python", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.52.11"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "kbd-misc", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.15"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "iputils", 
+            "release": "16.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "20071127"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "initscripts", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "9.03.27"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "device-mapper-libs", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.02.66"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "device-mapper-event-libs", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.02.66"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "selinux-policy", 
+            "release": "126.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.7.19"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "lvm2-libs", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.02.87"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "rsyslog", 
+            "release": "12.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.6.2"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cyrus-sasl", 
+            "release": "13.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.1.23"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "cronie-anacron", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4.4"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "crontabs", 
+            "release": "33.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.10"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "usermode", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.102"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rhn-setup", 
+            "release": "73.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.0"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rhn-check", 
+            "release": "73.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.0.0"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "kernel-firmware", 
+            "release": "220.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.6.32"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "plymouth", 
+            "release": "24.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.8.3"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "dracut-kernel", 
+            "release": "256.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "004"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 12, 
+            "name": "dhclient", 
+            "release": "25.P1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "4.1.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "openssh-server", 
+            "release": "70.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.3p1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "selinux-policy-targeted", 
+            "release": "126.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.7.19"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "bfa-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.0.0.0"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "iwl100-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "39.31.5.1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "b43-openfwwf", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.2"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "aic94xx-firmware", 
+            "release": "2.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "30"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 1, 
+            "name": "iwl1000-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "39.31.5.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "grub", 
+            "release": "75.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.97"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "efibootmgr", 
+            "release": "9.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.5.4"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "audit", 
+            "release": "3.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.1.3"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "acl", 
+            "release": "6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.2.49"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ql2400-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.06.02"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ql2100-firmware", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.19.38"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 2, 
+            "name": "libertas-usb8388-firmware", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.110.22.p23"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ql2500-firmware", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.06.02"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "zd1211-firmware", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.4"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "rt61pci-firmware", 
+            "release": "7.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.2"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ql2200-firmware", 
+            "release": "3.1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "2.02.08"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ipw2100-firmware", 
+            "release": "11.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.3"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "ipw2200-firmware", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "perl-Pod-Escapes", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.04"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "perl-Module-Pluggable", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.90"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 1, 
+            "name": "perl-Pod-Simple", 
+            "release": "119.el6_1.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "3.13"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 1, 
+            "name": "perl-Error", 
+            "release": "4.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.17015"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "gpm-libs", 
+            "release": "12.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.20.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "openssh-clients", 
+            "release": "70.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "5.3p1"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "perl-Git", 
+            "release": "2.el6_0.1", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "1.7.1"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 2, 
+            "name": "vim-enhanced", 
+            "release": "1.6.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "7.2.411"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-pulp-agent-lib", 
+            "release": "0.2.beta", 
+            "vendor": null, 
+            "version": "2.0.6"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "pulp-rpm-handlers", 
+            "release": "0.2.beta", 
+            "vendor": null, 
+            "version": "2.0.6"
+        }, 
+        {
+            "arch": "x86_64", 
+            "epoch": 0, 
+            "name": "saslwrapper", 
+            "release": "1.el6", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.14"
+        }, 
+        {
+            "arch": "noarch", 
+            "epoch": 0, 
+            "name": "python-qpid", 
+            "release": "11.el6_3", 
+            "vendor": "Red Hat, Inc.", 
+            "version": "0.14"
+        }
+    ]
+}
