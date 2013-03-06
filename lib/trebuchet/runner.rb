@@ -27,7 +27,7 @@ require 'active_support/core_ext/hash' #with_indifferent_access
 module Trebuchet
   class Runner
 
-    @@operations_location = File.dirname(__FILE__) + '/operation/*.rb'
+    @@operations_location = File.dirname(__FILE__) + '/operation/'
 
     def self.operations_location=(path)
       @@operations_location = path
@@ -55,15 +55,17 @@ module Trebuchet
     end
 
     def gather_operations
-      files = Dir.glob(@@operations_location)
+      files = Dir.glob("#{@@operations_location}/*.rb") +  Dir.glob("#{@@operations_location}/*/base.rb")
       files.collect do |file|
-        file = File.basename(file, '.rb')
+        file = file.sub("#{@@operations_location}/", '').sub('.rb', '')
         get_operation(file)
       end
     end
 
     def get_operation(name)
-      Trebuchet::Operation.const_get(name.camelize)
+      const = Trebuchet::Operation
+      name.camelize.split("::").each{ |mod| const = const.const_get(mod)}
+      const
     end
 
   end
