@@ -27,5 +27,11 @@ resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/base.rb']
 
 resources += Dir[File.dirname(__FILE__) + '/trebuchet/engine/*.rb']
 resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*.rb']
+resources += Dir[File.dirname(__FILE__) + '/trebuchet/operation/*/*.rb']
+resources += Dir[File.dirname(__FILE__) + '/trebuchet/utils/*.rb']
 
 resources.uniq.each{ |f| require f }
+
+module Trebuchet
+  DATA_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../data/'))
+end
