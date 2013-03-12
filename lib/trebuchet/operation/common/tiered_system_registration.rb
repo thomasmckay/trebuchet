@@ -20,33 +20,39 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 module Trebuchet
   module Operation
-    module MassRegistration
-      class Setup < Trebuchet::Engine::KatelloCommand
+    module Common
+      class TieredSystemRegistration < Trebuchet::Engine::SystemRegistration
         include Trebuchet::Engine::MultiOperationComponent
-
-        def katello_commands
-          commands = [
-                      { :id=> :org_create,
-                        :command => "org create --name=#{esc(@org)}" }
-                    ]
-
-          @environments.each do |env|
-            commands += [{ :id=>"env_#{env}_create",
-                        :command=>"environment create --org=#{esc(@org)} --name=#{esc(env)} --prior=Library"}]
-          end
-          commands
-        end
 
         def set_params(params)
           @org = params[:org]
-          @environments = params[:environments]
+          @envs = params[:environments]
+          @systems = params[:systems]
         end
 
-        def esc(string)
-          "\"#{string}\""
+        def run_info
+          total_systems = @systems
+          data_points = 10
+          threads = 9
+
+          count_per_run = total_systems/data_points
+
+          runs = []
+          data_points.times.each do |current_count|
+            runs << {:threads=>threads, :count=>count_per_run, :name=>"#{count_per_run} Bulk load ##{current_count+1}"}
+            runs << {:threads=>1, :count=>1, :name=>"Create single system after #{(current_count+1)*count_per_run}"}
+          end
+          runs
+        end
+
+        def org_id
+          @org
+        end
+
+        def environments
+          @envs
         end
 
       end

@@ -20,38 +20,38 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 module Trebuchet
   module Operation
-    module MassRegistration
-      class Systems < Trebuchet::Engine::SystemRegistration
+    module Common
+      class SetupOrganization < Trebuchet::Engine::KatelloCommand
         include Trebuchet::Engine::MultiOperationComponent
+
+        def katello_commands
+          commands = [
+                      { :id=> "org_create_#{@org}",
+                        :command => "org create --name=#{esc(@org)}" }
+                    ]
+
+          @environments.each_with_index do |env, index|
+            if index %3 == 0
+              previous = 'Library'
+            else
+              previous = @environments[index-1]
+            end
+            commands << { :id=>"env_#{env}_create",
+                        :command=>"environment create --org=#{esc(@org)} --name=#{esc(env)} --prior=#{previous}"}
+          end
+          commands << { :id=>:provider_create,
+                              :command=>"provider create --org=#{esc(@org)} --name=#{esc(@org)}"}
+          commands
+        end
 
         def set_params(params)
           @org = params[:org]
-          @env = params[:environments].first
-        end
-
-        def run_info
-          total_systems = 200
-          data_points = 10
-          threads = 9
-
-          count_per_run = total_systems/data_points
-
-          runs = []
-          data_points.times.each do |current_count|
-            runs << {:threads=>threads, :count=>count_per_run, :name=>"#{count_per_run} Bulk load ##{current_count+1}"}
-            runs << {:threads=>1, :count=>1, :name=>"Create single system after #{(current_count+1)*count_per_run}"}
-          end
-          runs
-        end
-
-        def org_id
-          @org
-        end
-
-        def environment
-          @env
+          @environments = params[:environments]
+          @products = params[:products]
+          @repos = params[:repositories]
         end
 
       end

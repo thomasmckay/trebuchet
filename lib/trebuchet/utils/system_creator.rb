@@ -33,50 +33,50 @@ module Trebuchet
         @pkgs = JSON.parse(get_contents(File.join( Trebuchet::DATA_DIR, '/system/package_profile.json')))
         @count = count
         @threads = threads
-
         @config = config
+
       end
 
 
-      def run(environment, org_id)
+      def run(environments, org_id)
         thread_count = @count/@threads
         threads = []
 
+        @client = RestCalls.new("https://#{@config['username']}:#{@config['password']}@#{@config['host']}/katello/api")
+        env_ids = find_environments(org_id, environments)
         #for each thread
         @threads.times do |current_thread|
           #create a thread that creates thread_count systems
           threads << Thread.new do
+            Thread.current[:systems] = []
             thread_count.times do
-              create_system(environment, org_id)
+              Thread.current[:systems] << create_system(env_ids, org_id)
             end
           end
         end
 
+        @systems = []
         #wait for all the threads
         threads.each do |thread|
           thread.join
+          @systems.concat(thread[:systems] || [])
         end
+        @systems
       end
 
-      def create_system(environment, org_id)
-
-        client = RestCalls.new("https://#{@config['username']}:#{@config['password']}@#{@config['host']}/katello/api")
-
-        env_id = nil
-        client.environments(org_id).each do |env_json|
-          env_id =  env_json['id'] if env_json['label'] == environment
-        end
-        raise "Environment not found" if env_id.nil?
+      def create_system(env_ids, org_id)
+        raise "Environment not found" if env_ids.empty?
         name = "System-#{rand_hex}"
         print "Creating #{name}\n "
-        system = client.create_system({
+        system = @client.create_system({
             :name=>name,
-            :environment_id=> env_id,
+            :environment_id=> env_ids.sample,
             :organization_id=>org_id,
             :facts=>@facts,
             :cp_type=>'system'
          })
-        client.upload_package_profile(system['uuid'], @pkgs)
+        @client.upload_package_profile(system['uuid'], @pkgs)
+        system
       end
 
       def get_contents(filename)
@@ -89,6 +89,15 @@ module Trebuchet
       def rand_hex
         #nice, non-secure random hex
         "%08x" % (rand * 0xffffffff)
+      end
+
+      def find_environments(org_id, labels)
+        ids = []
+
+        @client.environments(org_id).each do |env_json|
+          ids << env_json['id'] if labels.include?(env_json['label'])
+        end
+        ids
       end
     end
 

@@ -26,17 +26,30 @@ module Trebuchet
     class SystemRegistration < Trebuchet::Engine::Base
 
       def run
-
+        systems = []
         run_info.each do |run|
           creator = Trebuchet::Utils::SystemCreator.new(run[:count], run[:threads], @config)
           time_command(Entry.new(:name=>run[:name], :operation=>self.class.name)) do
-            creator.run(environment, org_id)
+            systems.concat(creator.run(environments, org_id))
           end
         end
+        save_debrief
 
-        @debrief.save
+        if @config[:system_groups]
+          assignment = Trebuchet::Utils::SystemGroupAssignment.new(@config)
+          assignment.run(org_id, @config[:system_groups], systems.collect{|s| s['uuid']}, @config[:groups_per_system])
+        end
+        save_debrief
       end
 
+      #array of hashes  {:name, :count, :threads}
+      def run_info=(info)
+        @run_info = info
+      end
+
+      def run_info
+        @run_info
+      end
 
     end
   end

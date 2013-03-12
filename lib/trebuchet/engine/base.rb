@@ -28,7 +28,14 @@ module Trebuchet
 
       def initialize(config={})
         @config   = config
-        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name, :name => config['name'] })
+      end
+
+      def debrief= brief
+        @debrief = brief
+      end
+
+      def save_debrief
+        @debrief.save if @debrief
       end
 
       def run
@@ -54,6 +61,12 @@ module Trebuchet
         Trebuchet::Logger.log_entry(entry)
       end
 
+      #translates a count which can either be a number or a range [1,100]
+      #  if it is a range, returns a random value in that range
+      def calc_count(count)
+        count = (count[0] +  rand(count[1])) if count.is_a? Array
+        count
+      end
     end
   end
 end

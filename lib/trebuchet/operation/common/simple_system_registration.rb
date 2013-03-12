@@ -20,42 +20,30 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 module Trebuchet
   module Operation
-    module MassRegistration
-      class Base < Trebuchet::Engine::MultiOperation
+    module Common
+      class SimpleSystemRegistration < Trebuchet::Engine::SystemRegistration
+        include Trebuchet::Engine::MultiOperationComponent
 
-        def self.name
-          "MassSystemRegistration"
+        def set_params(params)
+          @org = params[:org]
+          @envs = params[:environments]
+          @system_count = params[:system_count]
         end
 
-        def self.description
-          "Does a large scale system registration test."
+        def run_info
+          [{:threads=>@config[:threads], :count=>@system_count, :name=>"System Create #{org_id}"}]
         end
 
-        def operation_list
-          list = [
-            Trebuchet::Operation::MassRegistration::Setup,
-            Trebuchet::Operation::MassRegistration::Systems,
-          ]
-          list << Trebuchet::Operation::MassRegistration::Cleanup if @config[:cleanup]
-
-          list.collect do |op|
-            op.name = self.class.name
-            op = op.new(@config)
-            op.set_params(params)
-            op
-          end
+        def org_id
+          @org
         end
 
-        def params
-          @params ||= {
-              :org => "PerformanceOrg#{rand(10000)}",
-              :environments => ['DEV']
-          }
-          @params
+        def environments
+          @envs
         end
+
       end
     end
   end

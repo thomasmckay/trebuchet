@@ -21,32 +21,42 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Trebuchet
-  module Engine
-    class KatelloCommand < Trebuchet::Engine::Base
+  module Operation
+    class MassRegistration < Trebuchet::Engine::MultiOperation
 
-      COMMAND = 'katello'
+      def self.name
+        "MassSystemRegistration"
+      end
 
-      def run
-        self.katello_commands.each do |command|
-          binary = @config[:base_command] ||  COMMAND
-          entry = Trebuchet::Entry.new({:operation => self.class.name, :name => command[:id]})
-          full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
-              "--host #{@config[:host]} #{command[:command]}"
-          self.run_command(entry, full_command)
-          sleep(command[:sleep_after]) if command[:sleep_after]
+      def self.description
+        "Does a large scale system registration test."
+      end
+
+      def operation_list
+        list = [
+          Trebuchet::Operation::Common::SetupOrganization,
+          Trebuchet::Operation::Common::TieredSystemRegistration,
+        ]
+        list << Trebuchet::Operation::Common::CleanupOrganization if @config[:cleanup]
+
+        list.collect do |op|
+          op.name = self.class.name
+          op = op.new(@config)
+          op.set_params(params)
+          op
         end
-        save_debrief
       end
 
-      def katello_commands
-        raise "katello_commands not implemented"
-      end
-
-      def esc(string)
-        "\"#{string}\""
+      def params
+        @params ||= {
+            :org => "PerformanceOrg#{rand(10000)}",
+            :environments => ['DEV'],
+            :systems => 200
+        }
+        @params
       end
     end
+
   end
 end

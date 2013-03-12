@@ -27,6 +27,7 @@ module Trebuchet
 
       def run
         self.operation_list.each{ |op| op.run}
+        save_debrief
       end
 
       def operation_list

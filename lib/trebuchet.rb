@@ -35,3 +35,5 @@ resources.uniq.each{ |f| require f }
 module Trebuchet
   DATA_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../data/'))
 end
+
+require 'ruby-debug'

@@ -39,10 +39,14 @@ module Trebuchet
     # @param  [String]  operation_name  the single operation to run, otherwise all
     def run(config, operation_name=nil)
       config = config.with_indifferent_access
+      config.merge!(load_config(config[:config])) if config[:config]
 
       gather_operations.each do |operation|
         if operation_name.nil? || operation_name == operation.name
-          operation.new(config).run
+          op = operation.new(config)
+          op.validate_config if op.respond_to?(:validate_config)
+          op.debrief = Trebuchet::Debrief.new({ :operation => op.class.name, :name => config['name'] })
+          op.run
         end
       end
     end
@@ -66,6 +70,12 @@ module Trebuchet
       const = Trebuchet::Operation
       name.camelize.split("::").each{ |mod| const = const.const_get(mod)}
       const
+    end
+
+    def load_config(filename)
+      file = File.open(filename, 'r')
+      contents = file.read
+      JSON.parse(contents)
     end
 
   end

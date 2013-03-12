@@ -22,13 +22,12 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 module Trebuchet
   module Operation
-    module MassRegistration
-      class Cleanup < Trebuchet::Engine::KatelloCommand
+    module Common
+      class CleanupOrganization < Trebuchet::Engine::KatelloCommand
         include Trebuchet::Engine::MultiOperationComponent
 
-
         def katello_commands
-          [{ :id=> :org_destroy,
+          [{ :id=> "org_destroy_#{@org}",
             :command => "org delete --name=#{esc(@org)}" }]
         end
 
