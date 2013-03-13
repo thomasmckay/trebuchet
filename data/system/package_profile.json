@@ -1,13 +1,4 @@
-{
-    "_href": "/pulp/api/v2/consumers/22eaa87c-76a1-4d5a-af34-f6a167e3bc44/profiles/rpm/22eaa87c-76a1-4d5a-af34-f6a167e3bc44/rpm/", 
-    "_id": {
-        "$oid": "51360d559c60ed183200005e"
-    }, 
-    "_ns": "consumer_unit_profiles", 
-    "consumer_id": "22eaa87c-76a1-4d5a-af34-f6a167e3bc44", 
-    "content_type": "rpm", 
-    "id": "51360d559c60ed183200005e", 
-    "profile": [
+[
         {
             "arch": "noarch", 
             "epoch": 0, 
@@ -2089,4 +2080,4 @@
             "version": "0.14"
         }
     ]
-}
+

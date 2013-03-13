@@ -119,7 +119,14 @@ module Trebuchet
       end
 
       def upload_package_profile(uuid, profile)
-        JSON.parse(RestClient.put("#{@url_base}/consumers/#{uuid}/packages/", '_json'=>profile))
+        JSON.parse(RestClient.put("#{@url_base}/consumers/#{uuid}/packages/", {'_json'=>profile}.to_json, default_headers))
+      end
+
+      private
+
+      def default_headers
+       {:content_type => 'application/json',
+        :accept       => 'application/json'}
       end
 
     end
