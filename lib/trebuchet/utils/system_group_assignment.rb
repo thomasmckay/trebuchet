@@ -36,7 +36,6 @@ module Trebuchet
         @client = RestCalls.new("https://#{@config['username']}:#{@config['password']}@#{@config['host']}/katello/api")
         group_ids = find_groups(org_id, group_names)
         group_allocation = {}
-        #debugger
         system_uuids.each do |uuid|
           to_assign = pick_groups(groups_per_system, group_ids)
           to_assign.each do |group_id|

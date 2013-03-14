@@ -41,8 +41,7 @@ module Trebuchet
       def run(environments, org_id)
         thread_count = @count/@threads
         threads = []
-
-        @client = RestCalls.new("https://#{@config['username']}:#{@config['password']}@#{@config['host']}/katello/api")
+        @client = RestCalls.new("https://#{@config[:username]}:#{@config[:password]}@#{@config[:host]}/katello/api")
         env_ids = find_environments(org_id, environments)
         #for each thread
         @threads.times do |current_thread|

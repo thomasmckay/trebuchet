@@ -46,6 +46,7 @@ module Trebuchet
             :password => @config[:password],
             :name => @config[:name],
             :org => org_name,
+            :threads => @config[:threads],
             :environments =>environment_list(@config[:environments_per_org]),
             :system_count =>calc_count(@config[:systems_per_org]),
             :product_count=>calc_count(@config[:products_per_org]),

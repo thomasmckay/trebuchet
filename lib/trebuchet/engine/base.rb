@@ -34,7 +34,7 @@ module Trebuchet
       def validate_config
         return if !self.respond_to?(:required_configs)
         keys = self.required_configs + [:host, :username, :password]
-        missing = keys.collect{|s| s.to_s} - @config.keys
+        missing = keys.collect{|s| s.to_s} - @config.keys.collect{|s| s.to_s}
         raise "Missing configurations values: #{missing.join(', ')}" if !missing.empty?
       end
 
