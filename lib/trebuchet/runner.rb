@@ -44,12 +44,12 @@ module Trebuchet
       gather_operations.each do |operation|
         if operation_name.nil? || operation_name == operation.name
           op = operation.new(config)
-          op.validate_config if op.respond_to?(:validate_config)
           op.debrief = Trebuchet::Debrief.new({ :operation => op.class.name, :name => config['name'] })
           op.run
         end
       end
     end
+
 
     # List all operations
     # 

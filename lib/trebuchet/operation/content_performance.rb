@@ -33,7 +33,6 @@ module Trebuchet
         "Does a large scale performance test with lots of RHEL repos."
       end
 
-
       ENV_LIBRARY = "Library"
       ENV_DEV = "DEV"
       ENV_PROD = "PROD"

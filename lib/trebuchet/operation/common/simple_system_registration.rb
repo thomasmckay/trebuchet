@@ -26,22 +26,22 @@ module Trebuchet
       class SimpleSystemRegistration < Trebuchet::Engine::SystemRegistration
         include Trebuchet::Engine::MultiOperationComponent
 
-        def set_params(params)
-          @org = params[:org]
-          @envs = params[:environments]
-          @system_count = params[:system_count]
+        def required_configs
+          #optional config :system_groups
+          [:org, :environments, :system_count]
         end
 
+
         def run_info
-          [{:threads=>@config[:threads], :count=>@system_count, :name=>"System Create #{org_id}"}]
+          [{:threads=>@config[:threads], :count=>@config[:system_count], :name=>"System Create #{org_id}"}]
         end
 
         def org_id
-          @org
+          @config[:org]
         end
 
         def environments
-          @envs
+          @config[:environments]
         end
 
       end

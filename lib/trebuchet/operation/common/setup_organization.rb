@@ -28,10 +28,13 @@ module Trebuchet
         include Trebuchet::Engine::MultiOperationComponent
 
         def katello_commands
+          @org = @config[:org]
+          @environments = @config[:environments]
+
           commands = [
                       { :id=> "org_create_#{@org}",
                         :command => "org create --name=#{esc(@org)}" }
-                    ]
+                     ]
 
           @environments.each_with_index do |env, index|
             if index %3 == 0
@@ -47,11 +50,8 @@ module Trebuchet
           commands
         end
 
-        def set_params(params)
-          @org = params[:org]
-          @environments = params[:environments]
-          @products = params[:products]
-          @repos = params[:repositories]
+        def required_configs
+          [:org, :environments]
         end
 
       end

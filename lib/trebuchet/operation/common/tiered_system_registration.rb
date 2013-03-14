@@ -26,16 +26,15 @@ module Trebuchet
       class TieredSystemRegistration < Trebuchet::Engine::SystemRegistration
         include Trebuchet::Engine::MultiOperationComponent
 
-        def set_params(params)
-          @org = params[:org]
-          @envs = params[:environments]
-          @systems = params[:systems]
+        def required_configs
+          #optional config :system_groups
+          [:org, :environments, :system_count, :threads]
         end
 
         def run_info
-          total_systems = @systems
+          total_systems = @config[:system_count]
           data_points = 10
-          threads = 9
+          threads = @config[:threads]
 
           count_per_run = total_systems/data_points
 
@@ -48,11 +47,11 @@ module Trebuchet
         end
 
         def org_id
-          @org
+          @config[:org]
         end
 
         def environments
-          @envs
+          @config[:environments]
         end
 
       end

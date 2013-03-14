@@ -26,21 +26,19 @@ module Trebuchet
       class CreateSystemGroups < Trebuchet::Engine::KatelloCommand
         include Trebuchet::Engine::MultiOperationComponent
 
-
         def katello_commands
-          @names.collect do |name|
+          @config[:group_names].collect do |name|
             create_group(name)
           end.flatten
         end
 
         def create_group(name)
                 { :id=>:group_create,
-              :command=>"system_group create --org=#{esc(@org)} --name=#{name}"}
+              :command=>"system_group create --org=#{esc(@config[:org])} --name=#{name}"}
         end
 
-        def set_params(params)
-          @org = params[:org]
-          @names = params[:group_names]
+        def required_configs
+          [:org, :group_names]
         end
 
       end

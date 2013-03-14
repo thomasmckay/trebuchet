@@ -34,6 +34,10 @@ module Trebuchet
       end
 
       def operation_list
+        params = @config
+        params[:org] = "PerformanceOrg#{rand(10000)}"
+        params[:environments] = ['DEV']
+
         list = [
           Trebuchet::Operation::Common::SetupOrganization,
           Trebuchet::Operation::Common::TieredSystemRegistration,
@@ -42,20 +46,15 @@ module Trebuchet
 
         list.collect do |op|
           op.name = self.class.name
-          op = op.new(@config)
-          op.set_params(params)
+          op = op.new(params)
           op
         end
       end
 
-      def params
-        @params ||= {
-            :org => "PerformanceOrg#{rand(10000)}",
-            :environments => ['DEV'],
-            :systems => 200
-        }
-        @params
+      def required_configs
+        [:threads, :system_count]
       end
+
     end
 
   end

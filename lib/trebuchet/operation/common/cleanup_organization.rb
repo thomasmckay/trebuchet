@@ -27,17 +27,14 @@ module Trebuchet
         include Trebuchet::Engine::MultiOperationComponent
 
         def katello_commands
-          [{ :id=> "org_destroy_#{@org}",
-            :command => "org delete --name=#{esc(@org)}" }]
+          [{ :id=> "org_destroy_#{@config[:org]}",
+            :command => "org delete --name=#{esc(@config[:org])}" }]
         end
 
-        def set_params(params)
-          @org = params[:org]
+        def required_configs
+          [:org]
         end
 
-        def esc(string)
-          "\"#{string}\""
-        end
       end
     end
   end
