@@ -30,7 +30,7 @@ module Trebuchet
       end
 
       def self.description
-        "Does a large scale system registration test."
+        "Does a large scale population of katello accross all content types."
       end
 
       def operation_list
