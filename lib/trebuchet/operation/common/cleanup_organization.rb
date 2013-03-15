@@ -21,15 +21,22 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    module Common
+      class CleanupOrganization < Trebuchet::Engine::KatelloCommand
+        include Trebuchet::Engine::MultiOperationComponent
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+        def katello_commands
+          [{ :id=> "org_destroy_#{@config[:org]}",
+            :command => "org delete --name=#{esc(@config[:org])}" }]
+        end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+        def required_configs
+          [:org]
+        end
+
+      end
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

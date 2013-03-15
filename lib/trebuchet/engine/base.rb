@@ -28,7 +28,22 @@ module Trebuchet
 
       def initialize(config={})
         @config   = config
-        @debrief  = Trebuchet::Debrief.new({ :operation => self.class.name, :name => config['name'] })
+        validate_config
+      end
+
+      def validate_config
+        return if !self.respond_to?(:required_configs)
+        keys = self.required_configs + [:host, :username, :password]
+        missing = keys.collect{|s| s.to_s} - @config.keys.collect{|s| s.to_s}
+        raise "Missing configurations values: #{missing.join(', ')}" if !missing.empty?
+      end
+
+      def debrief= brief
+        @debrief = brief
+      end
+
+      def save_debrief
+        @debrief.save if @debrief
       end
 
       def run
@@ -41,7 +56,7 @@ module Trebuchet
           entry.success = system(command)
           print entry.input + "\n" if !entry.success
         end
-        @debrief.save
+        save_debrief
       end
 
       def time_command(entry, &block)
@@ -55,6 +70,12 @@ module Trebuchet
         Trebuchet::Logger.log_entry(entry)
       end
 
+      #translates a count which can either be a number or a range [1,100]
+      #  if it is a range, returns a random value in that range
+      def calc_count(count)
+        count = (count[0] +  rand(count[1])) if count.is_a? Array
+        count
+      end
     end
   end
 end

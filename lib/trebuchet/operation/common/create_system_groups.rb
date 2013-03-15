@@ -21,15 +21,28 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    module Common
+      class CreateSystemGroups < Trebuchet::Engine::KatelloCommand
+        include Trebuchet::Engine::MultiOperationComponent
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+        def katello_commands
+          @config[:group_names].collect do |name|
+            create_group(name)
+          end.flatten
+        end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+        def create_group(name)
+                { :id=>:group_create,
+              :command=>"system_group create --org=#{esc(@config[:org])} --name=#{name}"}
+        end
+
+        def required_configs
+          [:org, :group_names]
+        end
+
+      end
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

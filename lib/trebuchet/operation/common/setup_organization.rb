@@ -21,31 +21,39 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Trebuchet
-  module Engine
-    class KatelloCommand < Trebuchet::Engine::Base
+  module Operation
+    module Common
+      class SetupOrganization < Trebuchet::Engine::KatelloCommand
+        include Trebuchet::Engine::MultiOperationComponent
 
-      COMMAND = 'katello'
+        def katello_commands
+          @org = @config[:org]
+          @environments = @config[:environments]
 
-      def run
-        self.katello_commands.each do |command|
-          binary = @config[:base_command] ||  COMMAND
-          entry = Trebuchet::Entry.new({:operation => self.class.name, :name => command[:id]})
-          full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
-              "--host #{@config[:host]} #{command[:command]}"
-          self.run_command(entry, full_command)
-          sleep(command[:sleep_after]) if command[:sleep_after]
+          commands = [
+                      { :id=> "org_create_#{@org}",
+                        :command => "org create --name=#{esc(@org)}" }
+                     ]
+
+          @environments.each_with_index do |env, index|
+            if index % 3 == 0
+              previous = 'Library'
+            else
+              previous = @environments[index-1]
+            end
+            commands << { :id=>"env_#{env}_create",
+                        :command=>"environment create --org=#{esc(@org)} --name=#{esc(env)} --prior=#{previous}"}
+          end
+          commands << { :id=>:provider_create,
+                              :command=>"provider create --org=#{esc(@org)} --name=#{esc(@org)}"}
+          commands
         end
-        save_debrief
-      end
 
-      def katello_commands
-        raise "katello_commands not implemented"
-      end
+        def required_configs
+          [:org, :environments]
+        end
 
-      def esc(string)
-        "\"#{string}\""
       end
     end
   end

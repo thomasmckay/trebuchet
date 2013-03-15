@@ -21,15 +21,30 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    module Common
+      class SimpleSystemRegistration < Trebuchet::Engine::SystemRegistration
+        include Trebuchet::Engine::MultiOperationComponent
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+        def required_configs
+          #optional config :system_groups
+          [:org, :environments, :system_count]
+        end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+        def run_info
+          [{:threads=>@config[:threads], :count=>@config[:system_count], :name=>"System Create #{org_id}"}]
+        end
+
+        def org_id
+          @config[:org]
+        end
+
+        def environments
+          @config[:environments]
+        end
+
+      end
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

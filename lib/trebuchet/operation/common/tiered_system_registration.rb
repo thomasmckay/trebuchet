@@ -21,15 +21,41 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    module Common
+      class TieredSystemRegistration < Trebuchet::Engine::SystemRegistration
+        include Trebuchet::Engine::MultiOperationComponent
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+        def required_configs
+          #optional config :system_groups
+          [:org, :environments, :system_count, :threads]
+        end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+        def run_info
+          total_systems = @config[:system_count]
+          data_points = 10
+          threads = @config[:threads]
+
+          count_per_run = total_systems/data_points
+
+          runs = []
+          data_points.times.each do |current_count|
+            runs << {:threads=>threads, :count=>count_per_run, :name=>"#{count_per_run} Bulk load ##{current_count+1}"}
+            runs << {:threads=>1, :count=>1, :name=>"Create single system after #{(current_count+1)*count_per_run}"}
+          end
+          runs
+        end
+
+        def org_id
+          @config[:org]
+        end
+
+        def environments
+          @config[:environments]
+        end
+
+      end
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

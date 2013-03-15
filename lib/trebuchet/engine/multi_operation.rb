@@ -21,15 +21,19 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Engine
+    class MultiOperation < Trebuchet::Engine::Base
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+      def run
+        self.operation_list.each{ |op| op.run}
+        save_debrief
+      end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+      def operation_list
+        raise "Not implemented"
+      end
+
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

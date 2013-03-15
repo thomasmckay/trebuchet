@@ -21,15 +21,41 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Trebuchet
+  module Operation
+    class MassRegistration < Trebuchet::Engine::MultiOperation
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+      def self.name
+        "MassSystemRegistration"
+      end
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+      def self.description
+        "Does a large scale system registration test."
+      end
+
+      def operation_list
+        params = @config
+        params[:org] = "PerformanceOrg#{rand(10000)}"
+        params[:environments] = ['DEV']
+
+        list = [
+          Trebuchet::Operation::Common::SetupOrganization,
+          Trebuchet::Operation::Common::TieredSystemRegistration,
+        ]
+        list << Trebuchet::Operation::Common::CleanupOrganization if @config[:cleanup]
+
+        list.collect do |op|
+          op.name = self.class.name
+          op = op.new(params)
+          op
+        end
+      end
+
+      def required_configs
+        [:threads, :system_count]
+      end
+
+    end
+
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'

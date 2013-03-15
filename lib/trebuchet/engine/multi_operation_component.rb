@@ -22,14 +22,22 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'trebuchet'
-require './test/support/simple_bash'
+module Trebuchet
+  module Engine
+    module MultiOperationComponent
 
-if !File.directory?("./tmp")
-  Dir.mkdir("./tmp")
+      def self.included(base)
+        base.class_eval do
+          def self.name= name
+            @name = name
+          end
+
+          def self.name
+            @name
+          end
+        end
+
+      end
+    end
+  end
 end
-    
-Trebuchet::Debrief.data_dir = 'tmp/'
-Trebuchet::Runner.operations_location = './test/support/'
