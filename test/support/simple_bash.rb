@@ -22,7 +22,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 module Trebuchet::Operation
-  class SimpleBash
+  class SimpleBash < Trebuchet::Engine::Base
 
     def initialize(config={})
       @config   = config

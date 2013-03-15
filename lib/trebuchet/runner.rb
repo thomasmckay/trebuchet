@@ -33,6 +33,10 @@ module Trebuchet
       @@operations_location = path
     end
 
+    def self.operations_location
+      @@operations_location
+    end
+
     # Run all operations, or a specific operation
     #
     # @param  [Hash]    config          config hash to pass to operations (currently  :host, :user, :password)
@@ -41,13 +45,18 @@ module Trebuchet
       config = config.with_indifferent_access
       config.merge!(load_config(config[:config])) if config[:config]
 
+      operation_run = false
       gather_operations.each do |operation|
         if operation_name.nil? || operation_name == operation.name
           op = operation.new(config)
           op.debrief = Trebuchet::Debrief.new({ :operation => op.class.name, :name => config['name'] })
           op.run
+          op.save_debrief
+          operation_run = true
         end
       end
+      raise "No Operation Run!" unless operation_run
+
     end
 
 
