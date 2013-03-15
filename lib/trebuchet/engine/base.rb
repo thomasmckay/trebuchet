@@ -56,6 +56,7 @@ module Trebuchet
           entry.success = system(command)
           print entry.input + "\n" if !entry.success
         end
+        @debrief.save
       end
 
       def time_command(entry, &block)

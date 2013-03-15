@@ -35,11 +35,12 @@ module Trebuchet
 
     def initialize(metadata={})
       @metadata = metadata
+      create_operation_directory
+      @filename = filename
     end
 
     def save
-      create_operation_directory
-      File.open([@@data_dir, @metadata[:operation], '/', filename].join, "w+") do |file|
+      File.open([@@data_dir, @metadata[:operation], '/', @filename].join, "w+") do |file|
         file.write(JSON.generate(@metadata.merge({ :data => format_entries })))
       end
     end
@@ -52,7 +53,7 @@ module Trebuchet
 
     def filename
       timestamp = Time.now.strftime('%Y_%m_%d_%H%M%S')
-      [@metadata[:operation], '_', timestamp, '.json'].join
+      [@metadata[:operation], '_', timestamp, '_', @metadata[:name], '.json'].join
     end
 
     def format_entries
