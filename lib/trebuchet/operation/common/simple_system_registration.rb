@@ -20,6 +20,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 module Trebuchet
   module Operation
     module Common
@@ -30,7 +31,6 @@ module Trebuchet
           #optional config :system_groups
           [:org, :environments, :system_count]
         end
-
 
         def run_info
           [{:threads=>@config[:threads], :count=>@config[:system_count], :name=>"System Create #{org_id}"}]

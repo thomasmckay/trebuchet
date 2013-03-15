@@ -25,6 +25,7 @@
 module Trebuchet
   module Engine
     module MultiOperationComponent
+
       def self.included(base)
         base.class_eval do
           def self.name= name
@@ -37,7 +38,6 @@ module Trebuchet
         end
 
       end
-
     end
   end
 end

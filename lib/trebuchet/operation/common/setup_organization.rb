@@ -37,7 +37,7 @@ module Trebuchet
                      ]
 
           @environments.each_with_index do |env, index|
-            if index %3 == 0
+            if index % 3 == 0
               previous = 'Library'
             else
               previous = @environments[index-1]

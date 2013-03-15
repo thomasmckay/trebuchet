@@ -34,9 +34,7 @@ module Trebuchet
         @count = count
         @threads = threads
         @config = config
-
       end
-
 
       def run(environments, org_id)
         thread_count = @count/@threads
@@ -127,7 +125,6 @@ module Trebuchet
        {:content_type => 'application/json',
         :accept       => 'application/json'}
       end
-
     end
   end
 end
