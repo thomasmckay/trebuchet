@@ -15,6 +15,22 @@ For in-depth class and method documentation: http://katello.github.com/trebuchet
 Currently Trebuchet must be used via:
 
     git clone git://github.com/Katello/trebuchet.git
+    
+## Setup
+  It is highly recommended you use rvm with jruby with trebuchet, see https://rvm.io/ for installating rvm.
+  
+    yum install openssl-devel readline-devel
+    curl -L https://get.rvm.io | bash -s stable
+    source ~/.rvm/scripts/rvm
+      
+    rvm install jruby-1.7.3 
+    rvm use jruby-1.7.3
+    rvm gemset use trebuchet --create
+     
+  Once rvm is setup, simply cd into the trebuchet git repo and run     
+     
+    bundle install
+
 
 ## Terminology
 
@@ -35,7 +51,8 @@ To see a list of all operations:
 
 An operation is deployed via a siege and can be done so by:
 
-    thor trebuchet:siege <operation_name> -u <username> -p <password> -h <hostname>
+    thor trebuchet:siege <operation_name> -u <username> -p <password> -h <hostname> --config=./config/file.config
+ 
 
 ## Operation Definitions
 
