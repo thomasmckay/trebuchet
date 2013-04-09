@@ -17,7 +17,7 @@ Currently Trebuchet must be used via:
     git clone git://github.com/Katello/trebuchet.git
     
 ## Setup
-  It is highly recommended you use rvm with jruby with trebuchet, see https://rvm.io/ for installating rvm.
+  1. It is highly recommended you use rvm with jruby with trebuchet, see https://rvm.io/ for installating rvm.
   
     yum install openssl-devel readline-devel
     curl -L https://get.rvm.io | bash -s stable
@@ -27,10 +27,11 @@ Currently Trebuchet must be used via:
     rvm use jruby-1.7.3
     rvm gemset use trebuchet --create
      
-  Once rvm is setup, simply cd into the trebuchet git repo and run     
+  2. Once rvm is setup, simply cd into the trebuchet git repo and run     
      
     bundle install
 
+  3. If performing any tests that require a working manifest (such as the content performance test), simply place your manifest in ./data/manifest.zip
 
 ## Terminology
 
