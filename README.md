@@ -52,7 +52,20 @@ To see a list of all operations:
 An operation is deployed via a siege and can be done so by:
 
     thor trebuchet:siege <operation_name> -u <username> -p <password> -h <hostname> --config=./config/file.config
- 
+
+## Example Operations
+
+Simple ping operation:
+
+    thor trebuchet:siege ping  --host=localhost  -u admin -p admin  -n ping
+
+Mass System Registration (Edit options in ./config/MassSystemRegistration.conf):
+
+    thor trebuchet:siege MassSystemRegistration  --host=HOSTNAME  -u admin -p admin  -n SystemRegister --config=./config/MassSystemRegistration.conf --cleanup=false 
+
+Full Population (Edit options in ./config/FullPopulation.conf)
+
+    thor trebuchet:siege FullPopulation  --host=HOSTNAME  -u admin -p admin  -n SystemRegister --config=./config/FullPopulation.conf
 
 ## Operation Definitions
 
