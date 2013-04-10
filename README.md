@@ -27,8 +27,8 @@ Currently Trebuchet must be used via:
     rvm use jruby-1.7.3
     rvm gemset use trebuchet --create
      
-  2. Once rvm is setup, go into the trebuchet git repo and run     
-     
+  2. Once rvm is setup, go into the trebuchet git repo and run:    
+
     bundle install
 
   3. If performing any tests that require a working manifest (such as the content performance test), place your manifest in ./data/manifest.zip
