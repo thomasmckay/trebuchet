@@ -21,7 +21,7 @@ Currently Trebuchet must be used via:
 
     yum install openssl-devel readline-devel java-1.6.0-openjdk     
     curl -L https://get.rvm.io | bash -s stable     
-    source ~/.rvm/scripts/rvm   
+    source ~/.rvm/scripts/rvm # or /usr/local/rvm/scripts/rvm if installed as root   
     
     rvm install jruby-1.7.3     
     rvm use jruby-1.7.3     
