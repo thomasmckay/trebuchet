@@ -58,6 +58,7 @@ module Trebuchet
         manifest_path = File.dirname(__FILE__) + '/../../../data/manifest.zip'
         raise "Manifest ./data/manifest.zip not found" if !File.exists?(manifest_path)
         commands += import_manifest(manifest_path)
+        commands += enable_repo_set(REDHAT_PRODUCT, "Red Hat Enterprise Linux 6 Server (RPMs)")
         commands += enable_repo(REDHAT_PRODUCT, REDHAT_REPO)
         commands += sync(REDHAT_PRODUCT, REDHAT_REPO)
         commands += promote_product(REDHAT_PRODUCT)
@@ -99,8 +100,13 @@ module Trebuchet
       end
 
       def import_manifest(file_path)
-        [{ :id=> "upload_manifest", :sleep_after=>600,
+        [{ :id=> "upload_manifest",  :sleep_after=>60, 
           :command => "provider import_manifest --org=#{esc(@org)} --name='Red Hat' --file=#{file_path}" }]
+      end
+
+      def enable_repo_set(product, repo_set)
+       [{ :id=> "enable_repo_set_#{esc(repo_set)}",
+          :command => "product repository_set_enable --org=#{esc(@org)} --name=#{esc(product)} --set_name=#{esc(repo_set)}" }]
       end
 
       def enable_repo(product, repo)
