@@ -39,7 +39,7 @@ module Trebuchet
       def run(environments, org_id)
         thread_count = @count/@threads
         threads = []
-        @client = RestCalls.new("https://#{@config[:username]}:#{@config[:password]}@#{@config[:host]}/katello/api")
+        @client = RestCalls.new(build_url(@config))
         env_ids = find_environments(org_id, environments)
         #for each thread
         @threads.times do |current_thread|
@@ -95,6 +95,13 @@ module Trebuchet
           ids << env_json['id'] if labels.include?(env_json['label'])
         end
         ids
+      end
+
+      def build_url(config)
+        url = config[:http] ? "http://" : "https://"
+        url += "#{@config[:username]}:#{@config[:password]}@#{@config[:host]}"
+        url += ":#{config[:port]}" if config[:port]
+        url += "/katello/api"
       end
     end
 
