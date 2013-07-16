@@ -33,7 +33,7 @@ module Trebuchet
       end
 
       def run(org_id, group_names, system_uuids, groups_per_system)
-        @client = RestCalls.new("https://#{@config['username']}:#{@config['password']}@#{@config['host']}/katello/api")
+        @client = RestCalls.new(build_url(@config))
         group_ids = find_groups(org_id, group_names)
         group_allocation = {}
         system_uuids.each do |uuid|
@@ -62,6 +62,13 @@ module Trebuchet
           found << (list - found).sample
         end
         found
+      end
+
+      def build_url(config)
+        url = config[:http] ? "http://" : "https://"
+        url += "#{@config[:username]}:#{@config[:password]}@#{@config[:host]}"
+        url += ":#{config[:port]}" if config[:port]
+        url += "/katello/api"
       end
     end
 

@@ -32,8 +32,12 @@ module Trebuchet
         self.katello_commands.each do |command|
           binary = @config[:base_command] ||  COMMAND
           entry = Trebuchet::Entry.new({:operation => self.class.name, :name => command[:id]})
-          full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} " +
-              "--host #{@config[:host]} #{command[:command]}"
+
+          full_command = "#{binary} -u #{@config[:username]} -p #{@config[:password]} "
+          full_command += "--port=#{@config[:port]} " if @config[:port]
+          full_command += "--scheme=http " if @config[:http]
+          full_command += "--host #{@config[:host]} #{command[:command]}"
+
           self.run_command(entry, full_command)
           sleep(command[:sleep_after]) if command[:sleep_after]
         end
