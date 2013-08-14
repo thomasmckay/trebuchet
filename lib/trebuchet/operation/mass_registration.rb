@@ -35,8 +35,8 @@ module Trebuchet
 
       def operation_list
         params = @config
-        params[:org] = "PerformanceOrg#{rand(10000)}"
-        params[:environments] = ['DEV']
+        params[:org] ||= "PerformanceOrg#{rand(10000)}"
+        params[:environments] ||= ['DEV']
 
         list = [
           Trebuchet::Operation::Common::SetupOrganization,
