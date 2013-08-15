@@ -23,17 +23,17 @@
 
 require 'json'
 require 'rest_client'
+require 'trebuchet/utils/system_base'
 
 module Trebuchet
   module Utils
-    class SystemCreator
+    class SystemCreator < SystemBase
 
       def initialize(count, threads, config)
+        super(threads, config)
         @facts = JSON.parse(get_contents(File.join( Trebuchet::DATA_DIR, '/system/facts.json')))
         @pkgs = JSON.parse(get_contents(File.join( Trebuchet::DATA_DIR, '/system/package_profile.json')))
         @count = count
-        @threads = threads
-        @config = config
       end
 
       def run(environments, org_id)
@@ -76,18 +76,6 @@ module Trebuchet
         system
       end
 
-      def get_contents(filename)
-        file = File.open( filename ,'r')
-        contents = file.read
-        file.close
-        contents
-      end
-
-      def rand_hex
-        #nice, non-secure random hex
-        "%08x" % (rand * 0xffffffff)
-      end
-
       def find_environments(org_id, labels)
         ids = []
 
@@ -97,41 +85,6 @@ module Trebuchet
         ids
       end
 
-      def build_url(config)
-        url = config[:http] ? "http://" : "https://"
-        url += "#{@config[:username]}:#{@config[:password]}@#{@config[:host]}"
-        url += ":#{config[:port]}" if config[:port]
-        url += "/katello/api"
-      end
-    end
-
-    class RestCalls
-      def initialize(url)
-        @url_base = url
-      end
-
-      def environments(org_id)
-        JSON.parse(RestClient.get("#{@url_base}/organizations/#{org_id}/environments/"))
-      end
-
-      def create_system(params)
-        JSON.parse(RestClient.post("#{@url_base}/systems/", params))
-      end
-
-      def delete_system(uuid)
-        JSON.parse(RestClient.delete("#{@url_base}/systems/#{uuid}/"))
-      end
-
-      def upload_package_profile(uuid, profile)
-        JSON.parse(RestClient.put("#{@url_base}/consumers/#{uuid}/packages/", {'_json'=>profile}.to_json, default_headers))
-      end
-
-      private
-
-      def default_headers
-       {:content_type => 'application/json',
-        :accept       => 'application/json'}
-      end
     end
   end
 end
