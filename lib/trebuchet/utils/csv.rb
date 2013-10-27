@@ -33,11 +33,13 @@ module Trebuchet
       def initialize(config)
         super(config[:threads], config)
         @users_csv = get_lines(config[:csv][:users])[1..-1] if config[:csv][:users]
+        @systemgroups_csv = get_lines(config[:csv][:systemgroups])[1..-1] if config[:csv][:systemgroups]
         @systems_csv = get_lines(config[:csv][:systems])[1..-1] if config[:csv][:systems]
       end
 
       def run()
-        run_lines(method(:create_users_from_csv), @users_csv) if @users_csv
+        #run_lines(method(:create_users_from_csv), @users_csv) if @users_csv
+        run_lines(method(:create_systemgroups_from_csv), @systemgroups_csv) if @systemgroups_csv
         #run_lines(method(:create_systems_from_csv), @systems_csv) if @systems_csv
       end
 
@@ -68,7 +70,7 @@ module Trebuchet
       end
 
       def create_users_from_csv(line)
-        print "LINE #{line}"
+        print "USER #{line}"
 
         details = parse_user_csv(line)
 
@@ -76,9 +78,26 @@ module Trebuchet
           name = namify(details[:name_format], number)
           @client.create(:users, {
                            :user => {
-                             :username => name,
-                             :email => details[:email],
-                             :password => 'admin'
+                             :name => name,
+                             :limit => details[:limit]
+                           }
+                         })
+        end
+      end
+
+      def create_systemgroups_from_csv(line)
+        print "SYSTEM-GROUP #{line}"
+
+        details = parse_systemgroup_csv(line)
+
+        details[:count].times do |number|
+          name = namify(details[:name_format], number)
+          @client.create(:system_groups, {
+                           :organization_id => details[:org_label],
+                           :system_group => {
+                             :name => name,
+                             :max_systems => details[:limit] == 'Unlimited' ? -1 : details[:limit],
+                             :description => details[:description]
                            }
                          })
         end
@@ -86,8 +105,8 @@ module Trebuchet
       end
 
       def create_systems_from_csv(line)
-        print "LINE #{line}"
-        return
+        print "SYSTEM #{line}"
+        return # TODO: TMP
 
         @environments ||= {}
 
@@ -151,6 +170,15 @@ module Trebuchet
 
       def parse_user_csv(line)
         keys = [:name_format, :count, :first_name, :last_name, :email]
+        details = CSV.parse(line).map { |a| Hash[keys.zip(a)] }[0]
+
+        details[:count] = details[:count].to_i
+
+        details
+      end
+
+      def parse_systemgroup_csv(line)
+        keys = [:name_format, :count, :org_label, :limit, :description]
         details = CSV.parse(line).map { |a| Hash[keys.zip(a)] }[0]
 
         details[:count] = details[:count].to_i
