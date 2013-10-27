@@ -23,14 +23,13 @@
 
 module Trebuchet
   module Engine
-    class SystemCsvRegistration < Trebuchet::Engine::Base
+    class Csv < Trebuchet::Engine::Base
 
       def run
-        systems = []
         run_info.each do |run|
-          creator = Trebuchet::Utils::SystemCsvCreator.new(@config)
+          creator = Trebuchet::Utils::Csv.new(@config)
           time_command(Entry.new(:name=>run[:name], :operation=>self.class.name)) do
-            systems.concat(creator.run())
+            creator.run()
           end
         end
         save_debrief

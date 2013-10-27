@@ -22,11 +22,24 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 #
-# Systems CSV
+# -= Users CSV =-
+#
+# Columns
+#   Login
+#     - Login name of the user.
+#     - May contain '%d' which will be replaced with current iteration number of Count
+#     - eg. "user%d" -> "user1"
+#   Count
+#     - Number of times to iterate on this line of the CSV file
+#   First Name
+#   Last Name
+#   Email
+#
+# -= Systems CSV =-
 #
 # Columns
 #   Name
-#     - Name of the system. 
+#     - Name of the system.
 #     - May contain '%d' which will be replaced with current iteration number of Count
 #     - eg. "system%d" -> "system1"
 #   Count
@@ -75,29 +88,33 @@
 #   two%d,2,shippingreceiving,Library,,Yes,four1,RHEL 6.4,x86_64,1,4,1,Standard,"69|Red Hat Enterprise Linux Server,79|Red Hat Enterprise Linux Server",RH0103708|Red Hat Enterprise Linux Server Premium (8 sockets) (Up to 4 guests)
 #
 # Running
-#   % thor trebuchet:siege MassSystemCsvRegistration -u admin -p admin -h localhost -n csv --config ./config/MassSystemCsvRegistration.conf 
+#   % thor trebuchet:siege csv --config ./config/csv.conf
 #
 # Config File
-#  "threads": 2,
-#  "csv": "./data/system/systems.csv",
+#  {
+#    "threads": 2,
+#    "csv": {
+#      "systems": "./data/csv/systems.csv"
+#    }
+#  }
 #
 module Trebuchet
   module Operation
-    class MassCsvRegistration < Trebuchet::Engine::MultiOperation
+    class Csv < Trebuchet::Engine::MultiOperation
 
       def self.name
-        "MassSystemCsvRegistration"
+        "CSV"
       end
 
       def self.description
-        "System registration test from CSV file."
+        "Data population from CSV files."
       end
 
       def operation_list
         params = @config
 
         list = [
-          Trebuchet::Operation::Common::TieredSystemCsvRegistration,
+          Trebuchet::Operation::Common::TieredCsv,
         ]
 
         list.collect do |op|

@@ -24,7 +24,7 @@
 module Trebuchet
   module Operation
     module Common
-      class TieredSystemCsvRegistration < Trebuchet::Engine::SystemCsvRegistration
+      class TieredCsv < Trebuchet::Engine::Csv
         include Trebuchet::Engine::MultiOperationComponent
 
         def required_configs

@@ -24,45 +24,72 @@
 require 'json'
 require 'rest_client'
 require 'csv'
-require 'trebuchet/utils/system_base'
+require 'trebuchet/utils/api_base'
 
 module Trebuchet
   module Utils
-    class SystemCsvCreator < SystemBase
+    class Csv < ApiBase
 
       def initialize(config)
         super(config[:threads], config)
-        @csv = get_lines(config[:csv])[1..-1]  # skip first line headers
-        @environments = {}
+        @users_csv = get_lines(config[:csv][:users])[1..-1] if config[:csv][:users]
+        @systems_csv = get_lines(config[:csv][:systems])[1..-1] if config[:csv][:systems]
       end
 
       def run()
-        lines_per_thread = @csv.length/@threads + 1
+        run_lines(method(:create_users_from_csv), @users_csv) if @users_csv
+        #run_lines(method(:create_systems_from_csv), @systems_csv) if @systems_csv
+      end
+
+      def run_lines(creator, csv)
+        lines_per_thread = csv.length/@threads + 1
         threads = []
         @client = RestCalls.new(build_url(@config))
 
         @threads.times do |current_thread|
           start_index = ((current_thread) * lines_per_thread).to_i
           finish_index = ((current_thread + 1) * lines_per_thread).to_i
-          lines = @csv[start_index...finish_index].clone
+          lines = csv[start_index...finish_index].clone
           threads << Thread.new do
             Thread.current[:systems] = []
             lines.each do |line|
               # First character of '#' means commented line so skip
               if line.index('#') != 0
-                create_systems_from_csv(line)
+                creator.call(line)
               end
             end
           end
         end
 
-        #wait for all the threads
+        # wait for all the threads
         threads.each do |thread|
           thread.join
         end
       end
 
+      def create_users_from_csv(line)
+        print "LINE #{line}"
+
+        details = parse_user_csv(line)
+
+        details[:count].times do |number|
+          name = namify(details[:name_format], number)
+          @client.create(:users, {
+                           :user => {
+                             :username => name,
+                             :email => details[:email],
+                             :password => 'admin'
+                           }
+                         })
+        end
+
+      end
+
       def create_systems_from_csv(line)
+        print "LINE #{line}"
+        return
+
+        @environments ||= {}
 
         details = parse_system_csv(line)
 
@@ -120,6 +147,15 @@ module Trebuchet
         else
           name_format
         end
+      end
+
+      def parse_user_csv(line)
+        keys = [:name_format, :count, :first_name, :last_name, :email]
+        details = CSV.parse(line).map { |a| Hash[keys.zip(a)] }[0]
+
+        details[:count] = details[:count].to_i
+
+        details
       end
 
       def parse_system_csv(line)

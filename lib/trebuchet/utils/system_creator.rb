@@ -23,11 +23,11 @@
 
 require 'json'
 require 'rest_client'
-require 'trebuchet/utils/system_base'
+require 'trebuchet/utils/api_base'
 
 module Trebuchet
   module Utils
-    class SystemCreator < SystemBase
+    class SystemCreator < ApiBase
 
       def initialize(count, threads, config)
         super(threads, config)

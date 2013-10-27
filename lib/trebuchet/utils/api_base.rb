@@ -26,7 +26,7 @@ require 'rest_client'
 
 module Trebuchet
   module Utils
-    class SystemBase
+    class ApiBase
 
       def initialize(threads, config)
         @threads = threads
@@ -78,20 +78,33 @@ module Trebuchet
         parameters
       end
 
+      DEFAULT_HEADERS = {
+        :content_type => 'application/json',
+        :accept       => 'application/json,version=2'
+      }
+
+      def search(model, params, headers=DEFAULT_HEADERS)
+        JSON.parse(RestClient.get("#{@url_base}/#{model}#{parameterize(params)}", headers))
+      end
+
+      def create(model, params, headers=DEFAULT_HEADERS)
+        JSON.parse(RestClient.post("#{@url_base}/#{model}/", params, headers))
+      end
+
       def environments(org_id)
-        JSON.parse(RestClient.get("#{@url_base}/organizations/#{org_id}/environments/"))
+        JSON.parse(RestClient.get("#{@url_base}/organizations/#{org_id}/environments/", default_headers))
       end
 
       def search_systems(env_id, params)
-        JSON.parse(RestClient.get("#{@url_base}/environments/#{env_id}/systems#{parameterize(params)}"))
+        JSON.parse(RestClient.get("#{@url_base}/environments/#{env_id}/systems#{parameterize(params)}", default_headers))
       end
 
       def create_system(params)
-        JSON.parse(RestClient.post("#{@url_base}/systems/", params))
+        JSON.parse(RestClient.post("#{@url_base}/systems/", params, default_headers))
       end
 
       def delete_system(uuid)
-        JSON.parse(RestClient.delete("#{@url_base}/systems/#{uuid}/"))
+        JSON.parse(RestClient.delete("#{@url_base}/systems/#{uuid}/"), default_headers)
       end
 
       def update_system(uuid, params)
@@ -102,14 +115,6 @@ module Trebuchet
         JSON.parse(RestClient.put("#{@url_base}/consumers/#{uuid}/packages/", {'_json'=>profile}.to_json, default_headers))
       end
 
-      private
-
-      def default_headers
-       {
-         :content_type => 'application/json',
-         :accept       => 'application/json'
-       }
-      end
     end
   end
 end
