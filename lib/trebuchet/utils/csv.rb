@@ -34,12 +34,14 @@ module Trebuchet
         super(config[:threads], config)
         @users_csv = get_lines(config[:csv][:users])[1..-1] if config[:csv][:users]
         @systemgroups_csv = get_lines(config[:csv][:systemgroups])[1..-1] if config[:csv][:systemgroups]
+        @activationkeys_csv = get_lines(config[:csv][:activationkeys])[1..-1] if config[:csv][:activationkeys]
         @systems_csv = get_lines(config[:csv][:systems])[1..-1] if config[:csv][:systems]
       end
 
       def run()
         #run_lines(method(:create_users_from_csv), @users_csv) if @users_csv
-        run_lines(method(:create_systemgroups_from_csv), @systemgroups_csv) if @systemgroups_csv
+        #run_lines(method(:create_systemgroups_from_csv), @systemgroups_csv) if @systemgroups_csv
+        run_lines(method(:create_activationkeys_from_csv), @activationkeys_csv) if @activationkeys_csv
         #run_lines(method(:create_systems_from_csv), @systems_csv) if @systems_csv
       end
 
@@ -53,7 +55,6 @@ module Trebuchet
           finish_index = ((current_thread + 1) * lines_per_thread).to_i
           lines = csv[start_index...finish_index].clone
           threads << Thread.new do
-            Thread.current[:systems] = []
             lines.each do |line|
               # First character of '#' means commented line so skip
               if line.index('#') != 0
@@ -101,7 +102,26 @@ module Trebuchet
                            }
                          })
         end
+      end
 
+      def create_activationkeys_from_csv(line)
+        print "ACTIVATION-KEY #{line}"
+
+        details = parse_activationkey_csv(line)
+
+        details[:count].times do |number|
+          name = namify(details[:name_format], number)
+          @client.create(:activation_keys, {
+                           :organization_id => details[:org_label],
+                           :activation_key => {
+                             :name => name,
+                             :usage_limit => details[:limit] == 'Unlimited' ? -1 : details[:limit],
+                             :description => details[:description],
+                             :environment_id => details[:environment_id],
+                             :content_view_id => details[:content_view_id]
+                           }
+                         })
+        end
       end
 
       def create_systems_from_csv(line)
@@ -179,6 +199,15 @@ module Trebuchet
 
       def parse_systemgroup_csv(line)
         keys = [:name_format, :count, :org_label, :limit, :description]
+        details = CSV.parse(line).map { |a| Hash[keys.zip(a)] }[0]
+
+        details[:count] = details[:count].to_i
+
+        details
+      end
+
+      def parse_activationkey_csv(line)
+        keys = [:name_format, :count, :org_label, :description, :limit, :environment_id, :content_view_id, :system_groups]
         details = CSV.parse(line).map { |a| Hash[keys.zip(a)] }[0]
 
         details[:count] = details[:count].to_i
